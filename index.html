@@ -11,9 +11,9 @@
     <script src="https://kit.fontawesome.com/b211057708.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="src/css/funcionario.css">
 </head>
 
 <body>
@@ -51,17 +51,11 @@
                                     <span>Excluir funcionário</span>
                                 </a>
                             </li>
-
-                            <li>
-                                <a href="#">
-                                    <span>Vizualizar total de funcionários</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </li>
 
-                <li class="dropright">
+                <!-- <li class="dropright">
                     <a href="#">
                         <i class="fa-solid fa-money-bill-1-wave"></i>
                         <span>Salário e Benefícios</span>
@@ -99,7 +93,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
 
                 <li class="dropright">
                     <a href="#">
@@ -123,12 +117,6 @@
                             <li>
                                 <a href="#">
                                     <span>Atualizar produtos</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <span>Verificar disponibilidade de produto</span>
                                 </a>
                             </li>
                         </ul>
@@ -234,8 +222,76 @@
         </main>
 
         <section class="conteudo">
-            <div class="bem-vindo">
+            <div class="bem-vindo invisivel">
                 <h2>Seja Bem-Vindo!</h2>
+            </div>
+
+            <div class="cadastrar-funcionario invisivel">
+                <h2>Cadastro de Funcionário</h2>
+                <form action="">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" required>
+
+                    <label for="genero">Gênero:</label>
+                    <select id="genero" name="genero">
+                        <option value="H">Masculino</option>
+                        <option value="M">Feminino</option>
+                        <option value="O">Outro</option>
+                    </select>
+
+                    <label for="setor">Setor:</label>
+                    <select id="setor" name="setor">
+                        <option value="" selected disabled>Selecione um setor...</option>
+                        <option value="GERENTE_FILIAL">Gerente de Filial</option>
+                        <option value="ATENDIMENTO_CLIENTE">Atendimento ao cliente</option>
+                        <option value="GESTAO_PESSOAS">Gestão de pessoas</option>
+                        <option value="FINANCEIRO">Financeiro</option>
+                        <option value="VENDAS">Vendas</option>
+                        <option value="ALMOXARIFADO">Almoxarifado</option>
+                    </select>
+
+                    <label for="salarioBase">Salário Base:</label>
+                    <input type="number" id="salarioBase" name="salarioBase" required>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+
+            <div class="atualizar-funcionario">
+                <h2>Atualizar dados de Funcionário</h2>
+                <form action="">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome">
+
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf">
+
+                    <label for="genero">Gênero:</label>
+                    <select id="genero" name="genero">
+                        <option value="H">Masculino</option>
+                        <option value="M">Feminino</option>
+                        <option value="O">Outro</option>
+                    </select>
+
+                    <label for="setor">Setor:</label>
+                    <select id="setor" name="setor">
+                        <option value="" selected disabled>Selecione um setor...</option>
+                        <option value="GERENTE_FILIAL">Gerente de Filial</option>
+                        <option value="ATENDIMENTO_CLIENTE">Atendimento ao cliente</option>
+                        <option value="GESTAO_PESSOAS">Gestão de pessoas</option>
+                        <option value="FINANCEIRO">Financeiro</option>
+                        <option value="VENDAS">Vendas</option>
+                        <option value="ALMOXARIFADO">Almoxarifado</option>
+                    </select>
+
+                    <label for="salarioBase">Salário Base:</label>
+                    <input type="number" id="salarioBase" name="salarioBase">
+
+                    <button type="submit">Atualizar</button>
+                </form>
             </div>
         </section>
     </div>

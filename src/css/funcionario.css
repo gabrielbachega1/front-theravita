@@ -1,0 +1,18 @@
+.cadastrar-funcionario form, .atualizar-funcionario form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastrar-funcionario h2, .atualizar-funcionario {
+    font-size: 32px;
+}
+
+.cadastrar-funcionario h2, .cadastrar-funcionario input, .cadastrar-funcionario select,
+.atualizar-funcionario h2, .atualizar-funcionario input, .atualizar-funcionario select {
+    margin-bottom: 16px;
+    border-radius: 5px;
+}
+
+button {
+    cursor: pointer;
+}
