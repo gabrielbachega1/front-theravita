@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-.cadastrar-funcionario h2, .atualizar-funcionario {
+.cadastrar-funcionario h2, .atualizar-funcionario h2{
     font-size: 32px;
 }
 

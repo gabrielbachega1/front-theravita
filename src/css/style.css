@@ -133,6 +133,11 @@ main ul li a:hover {
     color: #fefefe;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 .invisivel {
     display: none;
 }

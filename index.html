@@ -226,24 +226,25 @@
                 <h2>Seja Bem-Vindo!</h2>
             </div>
 
-            <div class="cadastrar-funcionario invisivel">
+            <div class="cadastrar-funcionario">
                 <h2>Cadastro de Funcionário</h2>
-                <form action="">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
+                <form action="" id="form-cadastro">
+                    <label for="nome-cadastro">Nome:</label>
+                    <input type="text" id="nome-cadastro" name="nome-cadastro" required>
 
-                    <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf" required>
+                    <label for="cpf-cadastro">CPF:</label>
+                    <input type="number" id="cpf-cadastro" name="cpf-cadastro" required>
 
-                    <label for="genero">Gênero:</label>
-                    <select id="genero" name="genero">
+                    <label for="genero-cadastro">Gênero:</label>
+                    <select id="genero-cadastro" name="genero-cadastro">
+                        <option value="" selected disabled>Selecione um gênero...</option>
                         <option value="H">Masculino</option>
                         <option value="M">Feminino</option>
                         <option value="O">Outro</option>
                     </select>
 
-                    <label for="setor">Setor:</label>
-                    <select id="setor" name="setor">
+                    <label for="setor-cadastro">Setor:</label>
+                    <select id="setor-cadastro" name="setor-cadastro">
                         <option value="" selected disabled>Selecione um setor...</option>
                         <option value="GERENTE_FILIAL">Gerente de Filial</option>
                         <option value="ATENDIMENTO_CLIENTE">Atendimento ao cliente</option>
@@ -253,31 +254,32 @@
                         <option value="ALMOXARIFADO">Almoxarifado</option>
                     </select>
 
-                    <label for="salarioBase">Salário Base:</label>
-                    <input type="number" id="salarioBase" name="salarioBase" required>
+                    <label for="salario-base-cadastro">Salário Base:</label>
+                    <input type="number" id="salario-base-cadastro" name="salario-base-cadastro" required>
 
                     <button type="submit">Cadastrar</button>
                 </form>
             </div>
 
-            <div class="atualizar-funcionario">
+            <div class="atualizar-funcionario invisivel">
                 <h2>Atualizar dados de Funcionário</h2>
-                <form action="">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome">
+                <form action="" id="form-atualizar">
+                    <label for="nome-atualizar">Nome:</label>
+                    <input type="text" id="nome-atualizar" name="nome-atualizar">
 
-                    <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf">
+                    <label for="cpf-atualizar">CPF:</label>
+                    <input type="number" id="cpf-atualizar" name="cpf-atualizar">
 
-                    <label for="genero">Gênero:</label>
-                    <select id="genero" name="genero">
+                    <label for="genero-atualizar">Gênero:</label>
+                    <select id="genero-atualizar" name="genero-atualizar">
+                        <option value="" selected disabled>Selecione um gênero...</option>
                         <option value="H">Masculino</option>
                         <option value="M">Feminino</option>
                         <option value="O">Outro</option>
                     </select>
 
-                    <label for="setor">Setor:</label>
-                    <select id="setor" name="setor">
+                    <label for="setor-atualizar">Setor:</label>
+                    <select id="setor-atualizar" name="setor-atualizar">
                         <option value="" selected disabled>Selecione um setor...</option>
                         <option value="GERENTE_FILIAL">Gerente de Filial</option>
                         <option value="ATENDIMENTO_CLIENTE">Atendimento ao cliente</option>
@@ -287,14 +289,15 @@
                         <option value="ALMOXARIFADO">Almoxarifado</option>
                     </select>
 
-                    <label for="salarioBase">Salário Base:</label>
-                    <input type="number" id="salarioBase" name="salarioBase">
+                    <label for="salario-base-atualizar">Salário Base:</label>
+                    <input type="number" id="salario-base-atualizar" name="salario-base-atualizar">
 
                     <button type="submit">Atualizar</button>
                 </form>
             </div>
         </section>
     </div>
+    <script src="src/js/cadastro.js"></script>
 </body>
 
 </html>
