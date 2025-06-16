@@ -157,8 +157,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${funcionario.cpf}</td>
                         <td>${funcionario.genero}</td>
                         <td>${funcionario.setor}</td>
-                        <td>${funcionario.salario}</td>
                     `;
+                    fetch(`http://localhost:8800/salarios/${funcionario.id}`)
+                        .then(response => response.json()) // Adicione esta linha para converter a resposta
+                        .then(salario => {  // Ajuste o parâmetro para representar um único objeto
+                            row.innerHTML += `<td>${salario.salario}</td>`;
+                        })
+                        .catch(error => console.error('Erro ao obter salário:', error));
+
                     tbody.appendChild(row);
                 });
             })
