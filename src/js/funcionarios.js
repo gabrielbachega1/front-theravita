@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const formListar = document.querySelector("#form-listar");
     const tabelaFuncionarios = document.querySelector("#tabela-funcionarios");
     const setorEscolhido = document.querySelector("#setor-listar");
-    let setorLink = setorEscolhido.value === "TODOS" ? `http://localhost:8800/funcionarios/listar`:`http://localhost:8800/funcionarios/listar/${setorEscolhido.value}`;
 
     formListar.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -128,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function listarFuncionarios() {
+        let setorLink = setorEscolhido.value === "TODOS" ? `http://localhost:8800/funcionarios/listar`:`http://localhost:8800/funcionarios/listar/${setorEscolhido.value}`;
         fetch(setorLink)
             .then(response => response.json())
             .then(data => {
