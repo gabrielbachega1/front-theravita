@@ -1,33 +1,75 @@
-.cadastrar-funcionario form, .atualizar-funcionario form {
+.cadastrar-funcionario form,
+.atualizar-funcionario form {
     display: flex;
     flex-direction: column;
 }
 
-.cadastrar-funcionario h2, .atualizar-funcionario h2, .listar-funcionario h2 {
+.cadastrar-funcionario h2,
+.atualizar-funcionario h2,
+.listar-funcionario h2 {
     font-size: 28px;
 }
 
-.cadastrar-funcionario h2, .cadastrar-funcionario input, .cadastrar-funcionario select,
-.atualizar-funcionario h2, .atualizar-funcionario input, .atualizar-funcionario select {
+.cadastrar-funcionario h2,
+.cadastrar-funcionario input,
+.cadastrar-funcionario select,
+.atualizar-funcionario h2,
+.atualizar-funcionario input,
+.atualizar-funcionario select {
     margin-bottom: 16px;
     border-radius: 5px;
+}
+
+.listar-funcionario {
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
 }
 
 .listar-funcionario form {
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-bottom: 16px;
 }
 
 button {
     cursor: pointer;
 }
 
-.conteudo div { 
-    width: 420px;
-    max-height: 550px;
+/* TABELA LISTAR */
+table,
+th,
+td {
+    border: 1px solid black;
+    font-size: 16px;
 }
 
-.conteudo label{
-    font-size: 18px;
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+    width: 120px;
+}
+
+th {
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #085F63;
+    color: #fff;
+}
+
+.conteudo table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
 }

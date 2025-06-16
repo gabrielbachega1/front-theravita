@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapaSecoes = {
         'Cadastrar funcionário': 'cadastrar-funcionario',
         'Editar funcionário': 'atualizar-funcionario',
-        'Listar funcionários': 'listar-funcionario'
+        'Listar funcionários': 'listar-funcionario',
+        'Excluir funcionário': 'excluir-funcionario'
         // Adicione outros mapeamentos conforme criar novas seções
     };
 

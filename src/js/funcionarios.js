@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formListar = document.querySelector("#form-listar");
     const tabelaFuncionarios = document.querySelector("#tabela-funcionarios");
     const setorEscolhido = document.querySelector("#setor-listar");
+    let setorLink = setorEscolhido.value === "TODOS" ? `http://localhost:8800/funcionarios/listar`:`http://localhost:8800/funcionarios/listar/${setorEscolhido.value}`;
 
     formListar.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -127,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function listarFuncionarios() {
-        fetch(`http://localhost:8800/funcionarios/listar/${setorEscolhido.value}`)
+        fetch(setorLink)
             .then(response => response.json())
             .then(data => {
                 if (!tabelaFuncionarios.querySelector("table")) {
@@ -159,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${funcionario.setor}</td>
                     `;
                     fetch(`http://localhost:8800/salarios/${funcionario.id}`)
-                        .then(response => response.json()) // Adicione esta linha para converter a resposta
-                        .then(salario => {  // Ajuste o parâmetro para representar um único objeto
+                        .then(response => response.json()) 
+                        .then(salario => {  
                             row.innerHTML += `<td>${salario.salario}</td>`;
                         })
                         .catch(error => console.error('Erro ao obter salário:', error));
@@ -171,3 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Erro ao listar funcionários:', error));
     }
 });
+
+// EXCLUIR FUNCIONÁRIO
+const formExcluir = document.querySelector("#form-excluir");
+const iIdExcluir = document.querySelector("#id-excluir");
+function excluirFuncionario() {
+    fetch(`http://localhost:8800/funcionarios/excluir/${iIdExcluir.value}`, {
+        method: "DELETE"
+    })
+    .then(function (res) { console.log(res); })
+    .catch(function (res) { console.log(res); });
+}

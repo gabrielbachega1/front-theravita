@@ -55,6 +55,7 @@ main,
     justify-content: center;
     align-items: center;
     transition: 0.1s ease-in-out;
+    overflow-x: auto;
 }
 
 .conteudo .bem-vindo h2 {
@@ -88,6 +89,15 @@ a {
 
 .container main ul li a {
     background-color: #cceec7;
+}
+
+.conteudo div { 
+    width: 80%;
+    max-height: 550px;
+}
+
+.conteudo label{
+    font-size: 18px;
 }
 
 .container .conteudo .funcionarios ul li a {
@@ -137,8 +147,4 @@ main ul li a:hover {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-}
-
-.invisivel {
-    display: none;
 }

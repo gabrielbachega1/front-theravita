@@ -16,6 +16,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="src/css/funcionario.css">
+    <link rel="stylesheet" href="src/css/none.css">
 </head>
 
 <body>
@@ -299,7 +300,8 @@
                     </select>
 
                     <label for="salario-base-atualizar">Salário Base:</label>
-                    <input type="number" id="salario-base-atualizar" name="salario-base-atualizar" min="1518" step="0.01" placeholder="Ex: 2500.00">
+                    <input type="number" id="salario-base-atualizar" name="salario-base-atualizar" min="1518"
+                        step="0.01" placeholder="Ex: 2500.00">
 
                     <button type="submit">Atualizar</button>
                 </form>
@@ -311,7 +313,7 @@
                     <label for="setor-listar">Setor:</label>
                     <select id="setor-listar" name="setor-listar">
                         <option value="" selected disabled>Selecione um setor...</option>
-                        <option value="">Listar todos</option>
+                        <option value="TODOS">Listar todos</option>
                         <option value="GERENTE_FILIAL">Gerente de Filial</option>
                         <option value="ATENDIMENTO_CLIENTE">Atendimento ao cliente</option>
                         <option value="GESTAO_PESSOAS">Gestão de pessoas</option>
@@ -323,7 +325,40 @@
                     <button type="submit">Listar</button>
                 </form>
 
-                <div id="tabela-funcionarios"></div>
+                <div id="tabela-funcionarios">
+                    <!-- <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Gênero</th>
+                                <th>Setor</th>
+                                <th>Salário</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>${funcionario.id}</td>
+                                <td>${funcionario.nome}</td>
+                                <td>${funcionario.cpf}</td>
+                                <td>${funcionario.genero}</td>
+                                <td>${funcionario.setor}</td>
+                                <td>${funcionario.setor}</td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+            </div>
+
+            <div class="excluir-funcionario invisivel">
+                <h2>Excluir Funcionário</h2>
+                <form id="form-excluir" autocomplete="off" aria-label="Excluir Funcionário">
+                    <label for="id-excluir">Informe o ID do Funcionário que deseja excluir:</label>
+                    <input type="number" id="id-excluir" name="id-excluir" required placeholder="Digite o ID">
+
+                    <button type="submit">Excluir</button>
+                </form>
         </section>
     </div>
     <script src="src/js/funcionarios.js"></script>
