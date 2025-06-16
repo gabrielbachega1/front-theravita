@@ -183,3 +183,13 @@ function excluirFuncionario() {
     .then(function (res) { console.log(res); })
     .catch(function (res) { console.log(res); });
 }
+
+function limparExcluir() {
+    iIdExcluir.value = "";
+}
+
+formExcluir.addEventListener('submit', function (event) {
+    event.preventDefault();
+    excluirFuncionario();
+    limparExcluir();
+});
