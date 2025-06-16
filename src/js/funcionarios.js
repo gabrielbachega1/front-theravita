@@ -45,7 +45,7 @@ function validarCPF(cpf) {
     return true;
 }
 
-function limpar(){
+function limpar() {
     iNome.value = "";
     iCpf.value = "";
     iGenero.value = "";
@@ -53,7 +53,7 @@ function limpar(){
     iSalario.value = "";
 }
 
-formulario.addEventListener('submit', function(event){
+formulario.addEventListener('submit', function (event) {
     event.preventDefault();
     if (!validarCPF(iCpf.value)) {
         alert("CPF inválido!");
@@ -74,44 +74,27 @@ const iSetorAtualizar = document.querySelector("#setor-atualizar");
 const iSalarioAtualizar = document.querySelector("#salario-base-atualizar");
 
 function atualizarFuncionario() {
+    const body = {};
+    if (iNomeAtualizar.value) body.nome = iNomeAtualizar.value;
+    if (iCpfAtualizar.value) body.cpf = iCpfAtualizar.value;
+    if (iGeneroAtualizar.value) body.genero = iGeneroAtualizar.value;
+    if (iSetorAtualizar.value) body.setor = iSetorAtualizar.value;
+    if (iSalarioAtualizar.value) body.salario = iSalarioAtualizar.value;
+
     fetch(`http://localhost:8800/funcionarios/editar/${iIdAtualizar.value}`, {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
         method: "PUT",
-        body: JSON.stringify({
-            nome: iNomeAtualizar.value,
-            cpf: iCpfAtualizar.value,
-            genero: iGeneroAtualizar.value,
-            setor: iSetorAtualizar.value,
-            salario: iSalarioAtualizar.value
-        })
+        body: JSON.stringify(body)
     })
     .then(function (res) { console.log(res); })
     .catch(function (res) { console.log(res); });
 }
 
-function validarCPF(cpf) {
-    cpf = cpf.replace(/[^\d]+/g, '');
-    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
-
-    let soma = 0, resto;
-    for (let i = 1; i <= 9; i++) soma += parseInt(cpf[i - 1]) * (11 - i);
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf[9])) return false;
-
-    soma = 0;
-    for (let i = 1; i <= 10; i++) soma += parseInt(cpf[i - 1]) * (12 - i);
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf[10])) return false;
-
-    return true;
-}
-
 function limparAtualizar() {
+    iIdAtualizar.value = "";
     iNomeAtualizar.value = "";
     iCpfAtualizar.value = "";
     iGeneroAtualizar.value = "";
@@ -119,12 +102,14 @@ function limparAtualizar() {
     iSalarioAtualizar.value = "";
 }
 
-formAtualizar.addEventListener('submit', function(event) {
+formAtualizar.addEventListener('submit', function (event) {
     event.preventDefault();
-    if (!validarCPF(iCpfAtualizar.value)) {
-        alert("CPF inválido!");
-        iCpfAtualizar.focus();
-        return;
+    if (iCpfAtualizar.value != null) {
+        if (!validarCPF(iCpfAtualizar.value)) {
+            alert("CPF inválido!");
+            iCpfAtualizar.focus();
+            return;
+        }
     }
     atualizarFuncionario();
     limparAtualizar();

@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mapeia o texto do menu para a classe da seção correspondente
     const mapaSecoes = {
         'Cadastrar funcionário': 'cadastrar-funcionario',
-        'Editar funcionário': 'atualizar-funcionario'
+        'Editar funcionário': 'atualizar-funcionario',
+        'Listar Funcionários': 'listar-funcionario'
         // Adicione outros mapeamentos conforme criar novas seções
     };
 
