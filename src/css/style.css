@@ -60,6 +60,7 @@ main,
 .conteudo .bem-vindo h2 {
     font-size: 32px;
     color: #121212;
+    text-align: center;
 }
 
 main .logo {

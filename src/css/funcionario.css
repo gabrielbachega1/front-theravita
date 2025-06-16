@@ -3,8 +3,8 @@
     flex-direction: column;
 }
 
-.cadastrar-funcionario h2, .atualizar-funcionario h2{
-    font-size: 32px;
+.cadastrar-funcionario h2, .atualizar-funcionario h2, .listar-funcionarios h2 {
+    font-size: 28px;
 }
 
 .cadastrar-funcionario h2, .cadastrar-funcionario input, .cadastrar-funcionario select,
@@ -13,6 +13,20 @@
     border-radius: 5px;
 }
 
+.listar-funcionarios form {
+    display: flex;
+    gap: 16px;
+}
+
 button {
     cursor: pointer;
+}
+
+.conteudo div { 
+    width: 420px;
+    max-height: 550px;
+}
+
+.conteudo label{
+    font-size: 18px;
 }
