@@ -104,7 +104,7 @@ function limparAtualizar() {
 
 formAtualizar.addEventListener('submit', function (event) {
     event.preventDefault();
-    if (iCpfAtualizar.value != null) {
+    if (iCpfAtualizar.value != "") {
         if (!validarCPF(iCpfAtualizar.value)) {
             alert("CPF inválido!");
             iCpfAtualizar.focus();
@@ -116,25 +116,52 @@ formAtualizar.addEventListener('submit', function (event) {
 });
 
 // LISTAR FUNCIONÁRIOS
-const tabelaFuncionarios = document.querySelector("#tabela-funcionarios tbody");
+document.addEventListener('DOMContentLoaded', () => {
+    const formListar = document.querySelector("#form-listar");
+    const tabelaFuncionarios = document.querySelector("#tabela-funcionarios");
+    const setorEscolhido = document.querySelector("#setor-listar");
 
-function listarFuncionarios() {
-    fetch("http://localhost:8800/funcionarios/listar")
-        .then(response => response.json())
-        .then(data => {
-            tabelaFuncionarios.innerHTML = ""; // Limpa a tabela antes de preencher
-            data.forEach(funcionario => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${funcionario.id}</td>
-                    <td>${funcionario.nome}</td>
-                    <td>${funcionario.cpf}</td>
-                    <td>${funcionario.genero}</td>
-                    <td>${funcionario.setor}</td>
-                    <td>${funcionario.salario}</td>
-                `;
-                tabelaFuncionarios.appendChild(row);
-            });
-        })
-        .catch(error => console.error('Erro ao listar funcionários:', error));
-}
+    formListar.addEventListener("submit", function (e) {
+        e.preventDefault();
+        listarFuncionarios();
+    });
+
+    function listarFuncionarios() {
+        fetch(`http://localhost:8800/funcionarios/listar/${setorEscolhido.value}`)
+            .then(response => response.json())
+            .then(data => {
+                if (!tabelaFuncionarios.querySelector("table")) {
+                    tabelaFuncionarios.innerHTML = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Gênero</th>
+                                    <th>Setor</th>
+                                    <th>Salário</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    `;
+                }
+                const tbody = tabelaFuncionarios.querySelector("tbody");
+                tbody.innerHTML = "";
+                data.forEach(funcionario => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${funcionario.id}</td>
+                        <td>${funcionario.nome}</td>
+                        <td>${funcionario.cpf}</td>
+                        <td>${funcionario.genero}</td>
+                        <td>${funcionario.setor}</td>
+                        <td>${funcionario.salario}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Erro ao listar funcionários:', error));
+    }
+});

@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-.cadastrar-funcionario h2, .atualizar-funcionario h2, .listar-funcionarios h2 {
+.cadastrar-funcionario h2, .atualizar-funcionario h2, .listar-funcionario h2 {
     font-size: 28px;
 }
 
@@ -13,8 +13,9 @@
     border-radius: 5px;
 }
 
-.listar-funcionarios form {
+.listar-funcionario form {
     display: flex;
+    align-items: center;
     gap: 16px;
 }
 
