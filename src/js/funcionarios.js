@@ -1,3 +1,4 @@
+// CADASTRO DE FUNCIONÁRIOS
 const formulario = document.querySelector("#form-cadastro");
 const iNome = document.querySelector("#nome-cadastro");
 const iCpf = document.querySelector("#cpf-cadastro");
@@ -5,7 +6,6 @@ const iGenero = document.querySelector("#genero-cadastro");
 const iSetor = document.querySelector("#setor-cadastro");
 const iSalario = document.querySelector("#salario-base-cadastro");
 
-// CADASTRO DE FUNCIONÁRIOS
 function cadastrar() {
     fetch("http://localhost:8800/funcionarios/cadastrar",
         {

@@ -6,7 +6,8 @@
 
 .cadastrar-funcionario h2,
 .atualizar-funcionario h2,
-.listar-funcionario h2 {
+.listar-funcionario h2,
+.excluir-funcionario h2{
     font-size: 28px;
 }
 
