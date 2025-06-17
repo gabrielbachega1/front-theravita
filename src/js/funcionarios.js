@@ -2,7 +2,6 @@
 const formulario = document.querySelector("#form-cadastro");
 const iNome = document.querySelector("#nome-cadastro");
 const iCpf = document.querySelector("#cpf-cadastro");
-const iGenero = document.querySelector("#genero-cadastro");
 const iSetor = document.querySelector("#setor-cadastro");
 const iSalario = document.querySelector("#salario-base-cadastro");
 
@@ -16,14 +15,15 @@ function cadastrarFuncionario() {
     body: JSON.stringify({
       nome: iNome.value,
       cpf: iCpf.value,
-      genero: iGenero.value,
       setor: iSetor.value,
       salario: iSalario.value,
     }),
   })
-    .then(function (res) {
+    .then((res) => {
       if (!res.ok) {
-        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+        return res.json().then((data) => {
+          throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+        });
       }
       return res.json();
     })
@@ -60,7 +60,6 @@ function validarCPF(cpf) {
 function limparFuncionario() {
   iNome.value = "";
   iCpf.value = "";
-  iGenero.value = "";
   iSetor.value = "";
   iSalario.value = "";
 }
@@ -81,7 +80,6 @@ const formAtualizar = document.querySelector("#form-atualizar");
 const iIdAtualizar = document.querySelector("#id-atualizar");
 const iNomeAtualizar = document.querySelector("#nome-atualizar");
 const iCpfAtualizar = document.querySelector("#cpf-atualizar");
-const iGeneroAtualizar = document.querySelector("#genero-atualizar");
 const iSetorAtualizar = document.querySelector("#setor-atualizar");
 const iSalarioAtualizar = document.querySelector("#salario-base-atualizar");
 
@@ -89,7 +87,6 @@ function atualizarFuncionario() {
   const body = {};
   if (iNomeAtualizar.value) body.nome = iNomeAtualizar.value;
   if (iCpfAtualizar.value) body.cpf = iCpfAtualizar.value;
-  if (iGeneroAtualizar.value) body.genero = iGeneroAtualizar.value;
   if (iSetorAtualizar.value) body.setor = iSetorAtualizar.value;
   if (iSalarioAtualizar.value) body.salario = iSalarioAtualizar.value;
 
@@ -101,9 +98,11 @@ function atualizarFuncionario() {
     method: "PUT",
     body: JSON.stringify(body),
   })
-    .then(function (res) {
+    .then((res) => {
       if (!res.ok) {
-        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+        return res.json().then((data) => {
+          throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+        });
       }
       return res.json();
     })
@@ -121,7 +120,6 @@ function limparAtualizarFuncionario() {
   iIdAtualizar.value = "";
   iNomeAtualizar.value = "";
   iCpfAtualizar.value = "";
-  iGeneroAtualizar.value = "";
   iSetorAtualizar.value = "";
   iSalarioAtualizar.value = "";
 }
@@ -166,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>CPF</th>
-                                    <th>Gênero</th>
                                     <th>Setor</th>
                                     <th>Salário</th>
                                 </tr>
@@ -183,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${funcionario.id}</td>
                         <td>${funcionario.nome}</td>
                         <td>${funcionario.cpf}</td>
-                        <td>${funcionario.genero}</td>
                         <td>${funcionario.setor}</td>
                     `;
           fetch(`http://localhost:8800/salarios/${funcionario.id}`)
@@ -192,6 +188,22 @@ document.addEventListener("DOMContentLoaded", () => {
               row.innerHTML += `<td>${salario.salario}</td>`;
             })
             .catch((error) => console.error("Erro ao obter salário:", error));
+
+          row.addEventListener("click", () => {
+            document
+              .querySelectorAll(".conteudo > div")
+              .forEach((div) => div.classList.add("invisivel"));
+
+            const atualizarProdutoDiv = document.querySelector(".atualizar-funcionario");
+            atualizarProdutoDiv.classList.remove("invisivel");
+
+            // Preencher os campos com os dados do produto
+            document.getElementById("id-atualizar").value = funcionario.id;
+            document.getElementById("nome-atualizar").value = funcionario.nome;
+            document.getElementById("cpf-atualizar").value = funcionario.cpf;
+            document.getElementById("setor-atualizar").value = funcionario.setor;
+            document.getElementById("salario-base-atualizar").value = salario.salario;
+          });
 
           tbody.appendChild(row);
         });
@@ -207,8 +219,13 @@ function excluirFuncionario() {
   fetch(`http://localhost:8800/funcionarios/excluir/${iIdExcluir.value}`, {
     method: "DELETE",
   })
-    .then(function (res) {
-      console.log(res);
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then((data) => {
+          throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+        });
+      }
+      return res.json();
     })
     .catch(function (res) {
       console.log(res);
