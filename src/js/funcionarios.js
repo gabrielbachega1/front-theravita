@@ -22,10 +22,18 @@ function cadastrar() {
     }),
   })
     .then(function (res) {
-      console.log(res);
+      if (!res.ok) {
+        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+      }
+      return res.json();
     })
-    .catch(function (res) {
-      console.log(res);
+    .then(function (data) {
+      console.log("Cadastro realizado com sucesso:", data);
+      alert("Funcionário cadastrado com sucesso!");
+    })
+    .catch(function (error) {
+      console.error("Erro ao cadastrar o funcionário:", error);
+      alert(`Falha ao cadastrar o funcionário: ${error.message}`);
     });
 }
 
@@ -66,7 +74,6 @@ formulario.addEventListener("submit", function (event) {
   }
   cadastrar();
   limpar();
-  alert("Funcionário cadastrado com sucesso!");
 });
 
 // ATUALIZAÇÃO DE FUNCIONÁRIOS
@@ -95,10 +102,18 @@ function atualizarFuncionario() {
     body: JSON.stringify(body),
   })
     .then(function (res) {
-      console.log(res);
+      if (!res.ok) {
+        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+      }
+      return res.json();
     })
-    .catch(function (res) {
-      console.log(res);
+    .then(function (data) {
+      console.log("Atualização realizada com sucesso:", data);
+      alert("Funcionário atualizado com sucesso!");
+    })
+    .catch(function (error) {
+      console.error("Erro ao atualizar funcionário:", error);
+      alert(`Falha ao atualizar funcionário: ${error.message}`);
     });
 }
 
@@ -122,7 +137,6 @@ formAtualizar.addEventListener("submit", function (event) {
   }
   atualizarFuncionario();
   limparAtualizar();
-  alert("Funcionário atualizado com sucesso!");
 });
 
 // LISTAR FUNCIONÁRIOS
@@ -209,5 +223,4 @@ formExcluir.addEventListener("submit", function (event) {
   event.preventDefault();
   excluirFuncionario();
   limparExcluir();
-  alert("Funcionário excluído com sucesso!");
 });

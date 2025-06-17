@@ -18,10 +18,18 @@ function cadastrar() {
     }),
   })
     .then(function (res) {
-      console.log(res);
+      if (!res.ok) {
+        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+      }
+      return res.json();
     })
-    .catch(function (res) {
-      console.log(res);
+    .then(function (data) {
+      console.log("Cadastro realizado com sucesso:", data);
+      alert("Produto cadastrado com sucesso!");
+    })
+    .catch(function (error) {
+      console.error("Erro ao cadastrar o produto:", error);
+      alert(`Falha ao cadastrar o produto: ${error.message}`);
     });
 }
 
@@ -36,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     cadastrar();
     limpar();
-    alert("Produto cadastrado com sucesso!");
   });
 });
 
