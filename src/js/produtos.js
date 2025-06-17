@@ -1,10 +1,10 @@
 // CADASTRO DE PRODUTOS
-const formulario = document.querySelector("#form-cadastro-prod");
-const iNome = document.querySelector("#nome-cadastro-prod");
+const formularioProd = document.querySelector("#form-cadastro-prod");
+const iNomeProd = document.querySelector("#nome-prod-cadastro");
 const iValorVenda = document.querySelector("#valor-venda-cadastro");
 const iValorCompra = document.querySelector("#valor-compra-cadastro");
 
-function cadastrar() {
+function cadastrarProduto() {
   fetch("http://localhost:8800/produtos/cadastrar", {
     headers: {
       Accept: "application/json",
@@ -12,9 +12,9 @@ function cadastrar() {
     },
     method: "POST",
     body: JSON.stringify({
-      nome: iNome.value,
-      valor_venda: iValorVenda.value,
-      valor_compra: iValorCompra.value,
+      descricao: iNomeProd.value,
+      valorVenda: iValorVenda.value,
+      valorCompra: iValorCompra.value,
     }),
   })
     .then(function (res) {
@@ -33,17 +33,17 @@ function cadastrar() {
     });
 }
 
-function limpar() {
-  iNome.value = "";
+function limparProduto() {
+  iNomeProd.value = "";
   iValorVenda.value = "";
   iValorCompra.value = "";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  formulario.addEventListener("submit", (e) => {
+  formularioProd.addEventListener("submit", (e) => {
     e.preventDefault();
-    cadastrar();
-    limpar();
+    cadastrarProduto();
+    limparProduto();
   });
 });
 
@@ -51,12 +51,19 @@ document.addEventListener("DOMContentLoaded", () => {
 const tabelaProdutos = document.querySelector("#tabela-produtos tbody");
 function listarProdutos() {
   fetch("http://localhost:8800/produtos/listar")
-    .then((res) => res.json())
+     .then((res) => {
+      if (!res.ok) throw new Error("Erro na resposta do servidor");
+      return res.text();
+    })
+    .then((text) => {
+      if (!text) return []; 
+      return JSON.parse(text);
+    })
     .then((produtos) => {
       tabelaProdutos.innerHTML = "";
       produtos.forEach((produto) => {
         const tr = document.createElement("tr");
-       tr.innerHTML = `
+        tr.innerHTML = `
                     <td>${produto.produto.id}</td>
                     <td>${produto.produto.descricao}</td>
                     <td>${produto.produto.valorVenda}</td>
@@ -75,25 +82,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ATUALIZAR PRODUTO
 const formularioAtualizar = document.querySelector("#form-atualizar-prod");
-const iIdAtualizar = document.querySelector("#id-prod-atualizar");
-const iNomeAtualizar = document.querySelector("#nome-prod-atualizar");
+const iIdAtualizarProd = document.querySelector("#id-prod-atualizar");
+const iNomeAtualizarProd = document.querySelector("#nome-prod-atualizar");
 const iValorVendaAtualizar = document.querySelector("#valor-venda-atualizar");
 const iValorCompraAtualizar = document.querySelector("#valor-compra-atualizar");
 
-function atualizar() {
+function atualizarProduto() {
   const body = {};
-  if (iNomeAtualizar.value) body.nome = iNomeAtualizar.value;
+  if (iNomeAtualizarProd.value) body.nome = iNomeAtualizarProd.value;
   if (iValorVendaAtualizar.value) body.valor_venda = iValorVendaAtualizar.value;
   if (iValorCompra.value) body.valor_compra = iValorCompraAtualizar.value;
 
-  fetch(`http://localhost:8800/produtos/atualizar/${iIdAtualizar.value}`, {
+  fetch(`http://localhost:8800/produtos/atualizar/${iIdAtualizarProd.value}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     method: "PUT",
     body: JSON.stringify({
-      nome: iNomeAtualizar.value,
+      nome: iNomeAtualizarProd.value,
       valor_venda: iValorVendaAtualizar.value,
       valor_compra: iValorCompraAtualizar.value,
     }),
@@ -115,7 +122,7 @@ function atualizar() {
   //modelo para feedback da operação
 }
 
-function limparAtualizar() {
+function limparAtualizarProd() {
   iIdAtualizar.value = "";
   iNomeAtualizar.value = "";
   iValorVendaAtualizar.value = "";
@@ -125,7 +132,7 @@ function limparAtualizar() {
 document.addEventListener("DOMContentLoaded", () => {
   formularioAtualizar.addEventListener("submit", (e) => {
     e.preventDefault();
-    atualizar();
-    limparAtualizar();
+    atualizarProduto();
+    limparAtualizarProd();
   });
 });

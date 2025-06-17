@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Seleciona os itens do submenu de funcionários
   const linksMenu = document.querySelectorAll(
-    "[data-menu], .produtos.submenu ul li a, .funcionarios.submenu ul li a"
+    "[data-menu], .produtos.submenu ul li a, .funcionarios.submenu ul li a, .caixa.submenu ul li a"
   );
 
   // Mapeia o texto do menu para a classe da seção correspondente
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Cadastrar produto": "cadastrar-produto",
     "Listar produtos": "listar-produtos",
     "Atualizar produto": "atualizar-produto",
+    "Registrar venda": "registrar-venda"
     // Adicione outros mapeamentos conforme criar novas seções
   };
 
