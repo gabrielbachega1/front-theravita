@@ -6,7 +6,7 @@ const iGenero = document.querySelector("#genero-cadastro");
 const iSetor = document.querySelector("#setor-cadastro");
 const iSalario = document.querySelector("#salario-base-cadastro");
 
-function cadastrar() {
+function cadastrarFuncionario() {
   fetch("http://localhost:8800/funcionarios/cadastrar", {
     headers: {
       Accept: "application/json",
@@ -57,7 +57,7 @@ function validarCPF(cpf) {
   return true;
 }
 
-function limpar() {
+function limparFuncionario() {
   iNome.value = "";
   iCpf.value = "";
   iGenero.value = "";
@@ -72,8 +72,8 @@ formulario.addEventListener("submit", function (event) {
     iCpf.focus();
     return;
   }
-  cadastrar();
-  limpar();
+  cadastrarFuncionario();
+  limparFuncionario();
 });
 
 // ATUALIZAÇÃO DE FUNCIONÁRIOS
@@ -117,7 +117,7 @@ function atualizarFuncionario() {
     });
 }
 
-function limparAtualizar() {
+function limparAtualizarFuncionario() {
   iIdAtualizar.value = "";
   iNomeAtualizar.value = "";
   iCpfAtualizar.value = "";
@@ -136,7 +136,7 @@ formAtualizar.addEventListener("submit", function (event) {
     }
   }
   atualizarFuncionario();
-  limparAtualizar();
+  limparAtualizarFuncionario();
 });
 
 // LISTAR FUNCIONÁRIOS

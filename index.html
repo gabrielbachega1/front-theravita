@@ -11,7 +11,9 @@
     <script src="https://kit.fontawesome.com/b211057708.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="src/css/funcionario.css">
     <link rel="stylesheet" href="src/css/produtos.css">
@@ -134,13 +136,13 @@
                         <ul>
                             <li>
                                 <a href="#">
-                                    <span>Registrar entrada</span>
+                                    <span>Registrar venda</span>
                                 </a>
                             </li>
 
                             <li>
                                 <a href="#">
-                                    <span>Registrar saída</span>
+                                    <span>Registrar compra</span>
                                 </a>
                             </li>
 
@@ -364,13 +366,16 @@
                 <h2>Cadastro de Produto</h2>
                 <form id="form-cadastro-prod" autocomplete="off" aria-label="Cadastro de Produto">
                     <label for="nome-prod-cadastro">Nome do produto:</label>
-                    <input type="text" id="nome-prod-cadastro" name="nome-prod-cadastro" required placeholder="Digite o nome do produto">
+                    <input type="text" id="nome-prod-cadastro" name="nome-prod-cadastro" required
+                        placeholder="Digite o nome do produto">
 
                     <label for="valor-venda-cadastro">Valor de venda:</label>
-                    <input type="number" id="valor-venda-cadastro" name="valor-venda-cadastro" required min="1" step="0.01" placeholder="Ex: 15.00">
+                    <input type="number" id="valor-venda-cadastro" name="valor-venda-cadastro" required min="1"
+                        step="0.01" placeholder="Ex: 15.00">
 
                     <label for="valor-compra-cadastro">Valor de compra:</label>
-                    <input type="number" id="valor-compra-cadastro" name="valor-compra-cadastro" required min="1" step="0.01" placeholder="Ex: 10.00">
+                    <input type="number" id="valor-compra-cadastro" name="valor-compra-cadastro" required min="1"
+                        step="0.01" placeholder="Ex: 10.00">
 
                     <button type="submit">Cadastrar</button>
                 </form>
@@ -400,19 +405,45 @@
                 <h2>Atualizar Produto</h2>
                 <form id="form-atualizar-prod" autocomplete="off" aria-label="Atualizar Produto">
                     <label for="id-prod-atualizar">Informe o ID do produto que deseja atualizar:</label>
-                    <input type="number" id="id-prod-atualizar" name="id-prod-atualizar" required placeholder="Digite o ID">
+                    <input type="number" id="id-prod-atualizar" name="id-prod-atualizar" required
+                        placeholder="Digite o ID">
 
                     <label for="nome-prod-atualizar">Nome do produto:</label>
-                    <input type="text" id="nome-prod-atualizar" name="nome-prod-atualizar" placeholder="Digite o nome do produto">
+                    <input type="text" id="nome-prod-atualizar" name="nome-prod-atualizar"
+                        placeholder="Digite o nome do produto">
 
                     <label for="valor-venda-atualizar">Valor de venda:</label>
-                    <input type="number" id="valor-venda-atualizar" name="valor-venda-atualizar" min="1" step="0.01" placeholder="Ex: 15.00">
+                    <input type="number" id="valor-venda-atualizar" name="valor-venda-atualizar" min="1" step="0.01"
+                        placeholder="Ex: 15.00">
 
                     <label for="valor-compra-atualizar">Valor de compra:</label>
-                    <input type="number" id="valor-compra-atualizar" name="valor-compra-atualizar" min="1" step="0.01" placeholder="Ex: 10.00">
+                    <input type="number" id="valor-compra-atualizar" name="valor-compra-atualizar" min="1" step="0.01"
+                        placeholder="Ex: 10.00">
 
                     <button type="submit">Atualizar</button>
                 </form>
+            </div>
+
+            <div class="registrar-venda invisivel">
+                <h2>Registrar Venda</h2>
+                <form id="form-registrar-venda" autocomplete="off" aria-label="Registrar Venda">
+                    <div id="produtos-venda">
+                        <div class="produto-venda">
+                            <label for="id-produto-venda-1">ID do produto:</label>
+                            <input type="number" id="id-produto-venda-1" name="id-produto-venda[]" required
+                                placeholder="Digite o ID do produto">
+                            <div class="container-venda">
+                                <label for="quantidade-venda-1">Quantidade vendida:</label>
+                                <input type="number" id="quantidade-venda-1" name="quantidade-venda[]" required min="1" placeholder="Digite a quantidade">
+
+                                <button type="button" class="remover-produto" style="display:none;">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="adicionar-produto">+</button>
+                    <button type="submit">Registrar Venda</button>
+                </form>
+
             </div>
         </section>
     </div>
