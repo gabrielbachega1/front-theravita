@@ -97,7 +97,7 @@ function atualizarTransportadora() {
     if (iTaxaTranAtualizar.value) body.taxa = iTaxaTranAtualizar.value;
     if (iRegiaoTranAtualizar.value) body.regiao = iRegiaoTranAtualizar.value;
 
-    fetch(`http://localhost:8800/transportadoras/atualizar/4/${iIdTranAtualizar.value}`, {
+    fetch(`http://localhost:8800/transportadoras/atualizar/${iIdTranAtualizar.value}`, {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

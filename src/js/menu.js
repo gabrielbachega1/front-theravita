@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "Cadastrar transportadora": "cadastrar-transportadora",
     "Listar transportadoras": "listar-transportadoras",
     "Atualizar transportadora": "atualizar-transportadora",
+    "Consultar transações em andamento": "listar-transacoes-abertas",
+    "Atualizar status": "atualizar-status-transacao",
     // Adicione outros mapeamentos conforme criar novas seções
   };
 
