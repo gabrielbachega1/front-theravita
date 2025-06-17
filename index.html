@@ -435,16 +435,16 @@
                     <input type="number" id="transportadora-venda" name="transportadora-venda" required
                         placeholder="ID da transportadora">
 
-                    <label for="regiao">Região:</label>
-                    <select id="regiao" name="regiao" required>
+                    <label for="regiao-venda">Região:</label>
+                    <select id="regiao-venda" name="regiao-venda" required>
                         <option value="" disabled selected>Selecione a região</option>
                         <option value="METROPOLITANA">METROPOLITANA</option>
                         <option value="MUNICIPAL">MUNICIPAL</option>
                         <option value="ESTADUAL">ESTADUAL</option>
                     </select>
 
-                    <label for="data">Data:</label>
-                    <input type="date" id="data" name="data" required>
+                    <label for="data-venda">Data:</label>
+                    <input type="date" id="data-venda" name="data-venda" required>
 
                     <div class="produto-venda">
                         <div class="container1">
@@ -463,6 +463,36 @@
                     </div>
 
                     <button type="submit">Registrar Venda</button>
+                </form>
+
+            </div>
+
+            <div class="registrar-compra invisivel">
+                <h2>Registrar compra</h2>
+                <form id="form-registrar-compra" autocomplete="off" aria-label="Registrar Compra">
+                    <label for="funcionario-compra">Funcionário (ID):</label>
+                    <input type="number" id="funcionario-compra" name="funcionario-compra" required placeholder="ID do funcionário">
+
+                    <label for="data-compra">Data:</label>
+                    <input type="date" id="data-compra" name="data-compra" required>
+
+                    <div class="produto-compra">
+                        <div class="container1">
+                            <label for="id-produto-compra-1">ID do produto:</label>
+                            <input type="number" id="id-produto-compra-1" name="id-produto-compra[]" required
+                                placeholder="Digite o ID do produto">
+                        </div>
+
+                        <div class="container2">
+                            <label for="quantidade-compra-1">Quantidade compra:</label>
+                            <input type="number" id="quantidade-compra-1" name="quantidade-compra[]" required min="1"
+                                placeholder="Digite a quantidade">
+
+                            <button type="button" id="adicionar-produto">+</button>
+                        </div>
+                    </div>
+
+                    <button type="submit">Registrar Compra</button>
                 </form>
 
             </div>

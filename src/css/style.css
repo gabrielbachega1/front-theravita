@@ -185,3 +185,7 @@ tbody tr:hover {
   table-layout: auto;
   border-collapse: collapse;
 }
+
+button {
+    cursor: pointer;
+}

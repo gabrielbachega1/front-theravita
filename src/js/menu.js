@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "Cadastrar produto": "cadastrar-produto",
     "Listar produtos": "listar-produtos",
     "Atualizar produto": "atualizar-produto",
-    "Registrar venda": "registrar-venda"
+    "Registrar venda": "registrar-venda",
+    "Registrar compra": "registrar-compra"
     // Adicione outros mapeamentos conforme criar novas seções
   };
 
