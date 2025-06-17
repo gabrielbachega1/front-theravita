@@ -1,0 +1,28 @@
+.atualizar-status-transacao form {
+    display: flex;
+    flex-direction: column;
+}
+
+.atualizar-status-transacao label,
+.atualizar-status-transacao input,
+.atualizar-status-transacao select {
+    margin-bottom: 16px;
+    border-radius: 5px;
+}
+
+.listar-transacoes-abertas h2,
+.atualizar-status-transacao h2 {
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.listar-transacoes-abertas {
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+.atualizar-status-transacao form button {
+    margin-top: 18px;
+}
