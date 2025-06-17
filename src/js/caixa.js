@@ -71,9 +71,11 @@ function cadastrarVenda() {
             }))
         })
     })
-        .then(function (res) {
+        .then((res) => {
             if (!res.ok) {
-                throw new Error(`Erro ${res.status}: ${res.statusText}`);
+                return res.json().then((data) => {
+                    throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+                });
             }
             return res.json();
         })
@@ -166,21 +168,22 @@ function cadastrarCompra() {
             data: iDataCompra.value,
             produtos: produtos
         })
+        
     })
-    .then(function (res) {
-        if (!res.ok) {
-            throw new Error(`Erro ${res.status}: ${res.statusText}`);
-        }
-        return res.json();
-    })
-    .then(function (data) {
-        console.log("Compra registrada com sucesso:", data);
-        alert("Compra registrada com sucesso!");
-    })
-    .catch(function (error) {
-        console.error("Erro ao registrar compra:", error);
-        alert(`Falha ao registrar compra: ${error.message}`);
-    });
+        .then(function (res) {
+            if (!res.ok) {
+                throw new Error(`Erro ${res.status}: ${res.statusText}`);
+            }
+            return res.json();
+        })
+        .then(function (data) {
+            console.log("Compra registrada com sucesso:", data);
+            alert("Compra registrada com sucesso!");
+        })
+        .catch(function (error) {
+            console.error("Erro ao registrar compra:", error);
+            alert(`Falha ao registrar compra: ${error.message}`);
+        }); 
 }
 
 // Função para limpar o formulário de compra
