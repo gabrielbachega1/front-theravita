@@ -1,7 +1,11 @@
 const tabelaTransacoes = document.querySelector("#tabela-transacoes-abertas tbody");
-const formAtualizarStatus = document.querySelector("#form-atualizar-status");
+const formPesquisarVenda = document.querySelector("#form-pesquisar-venda");
+const infoVendaStatus = document.getElementById("info-venda-status");
+const formAtualizarStatus = document.getElementById("form-atualizar-status");
 const iIdVendaAtualizar = document.querySelector("#id-venda-atualizar");
 const iNovoStatus = document.querySelector("#novo-status");
+
+let vendaAtual = null;
 
 function listarTransacoesAbertas() {
     fetch("http://localhost:8800/gestao/em-aberto")
@@ -30,6 +34,39 @@ function listarTransacoesAbertas() {
         });
 }
 
+
+
+
+// ATENÇÃO: O endpoint 'http://localhost:8800/gestao/venda/${id}' NÃO existe no backend atualmente.
+// Para buscar uma venda pelo ID, será necessário criar esse endpoint na gestão
+// OU adaptar para usar um endpoint já existente, como '/caixa/filtrar-vendas' se suportar busca por ID.
+formPesquisarVenda.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const id = document.getElementById("id-venda-pesquisar").value;
+    fetch(`http://localhost:8800/gestao/venda/${id}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Venda não encontrada");
+            return res.json();
+        })
+        .then(venda => {
+            vendaAtual = venda;
+            document.getElementById("info-produto").textContent = venda.produto;
+            document.getElementById("info-estoque").textContent = venda.estoque;
+            document.getElementById("info-regiao").textContent = venda.regiao;
+            document.getElementById("info-transportadora").textContent = venda.transportadora;
+            document.getElementById("info-data").textContent = venda.data;
+            document.getElementById("info-valor").textContent = venda.valor;
+            document.getElementById("info-status").textContent = venda.status;
+            document.getElementById("novo-status").value = "";
+            infoVendaStatus.style.display = "block";
+        })
+        .catch(err => {
+            alert("Venda não encontrada!");
+            infoVendaStatus.style.display = "none";
+            vendaAtual = null;
+        });
+});
+
 function atualizarStatusVenda() {
     const id = iIdVendaAtualizar.value;
     const status = iNovoStatus.value;
@@ -51,13 +88,6 @@ function atualizarStatusVenda() {
             console.error(err);
         });
 }
-
-// Exemplo de como ligar ao menu:
-document.querySelectorAll('.gestao.submenu ul li a').forEach(link => {
-    if (link.textContent.trim() === "Consultar transações em andamento") {
-        link.addEventListener("click", listarTransacoesAbertas);
-    }
-});
 
 if (formAtualizarStatus) {
     formAtualizarStatus.addEventListener("submit", function (e) {
