@@ -49,11 +49,12 @@ function listarProdutos() {
       tabelaProdutos.innerHTML = "";
       produtos.forEach((produto) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `
-                    <td>${produto.id}</td>
-                    <td>${produto.nome}</td>
-                    <td>${produto.valor_venda}</td>
-                    <td>${produto.valor_compra}</td>
+       tr.innerHTML = `
+                    <td>${produto.produto.id}</td>
+                    <td>${produto.produto.descricao}</td>
+                    <td>${produto.produto.valorVenda}</td>
+                    <td>${produto.produto.valorCompra}</td>
+                    <td>${produto.estoque}</td>
                 `;
         tabelaProdutos.appendChild(tr);
       });
@@ -91,11 +92,20 @@ function atualizar() {
     }),
   })
     .then(function (res) {
-      console.log(res);
+      if (!res.ok) {
+        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+      }
+      return res.json();
     })
-    .catch(function (res) {
-      console.log(res);
+    .then(function (data) {
+      console.log("Atualização realizada com sucesso:", data);
+      alert("Produto atualizado com sucesso!");
+    })
+    .catch(function (error) {
+      console.error("Erro ao atualizar o produto:", error);
+      alert(`Falha ao atualizar o produto: ${error.message}`);
     });
+  //modelo para feedback da operação
 }
 
 function limparAtualizar() {
@@ -110,6 +120,5 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     atualizar();
     limparAtualizar();
-    alert("Produto atualizado com sucesso!");
   });
 });
