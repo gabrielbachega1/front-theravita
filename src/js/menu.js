@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Atualizar produto": "atualizar-produto",
     "Registrar venda": "registrar-venda",
     "Cadastrar transportadora": "cadastrar-transportadora",
+    "Listar transportadoras": "listar-transportadoras",
     // Adicione outros mapeamentos conforme criar novas seções
   };
 

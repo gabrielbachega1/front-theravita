@@ -42,6 +42,39 @@ function limparTransportadora() {
   iRegiao.value = "";
 }
 
+const tabelaTransportadoras = document.querySelector("#tabela-transportadoras tbody");
+function listarTransportadoras() {
+    fetch("http://localhost:8800/transportadoras/listar")
+        .then((res) => {
+            if (!res.ok) throw new Error("Erro na resposta do servidor");
+            return res.text();
+        })
+        .then((text) => {
+            if (!text) return [];
+            return JSON.parse(text);
+        })
+        .then((transportadoras) => {
+            tabelaTransportadoras.innerHTML = "";
+            transportadoras.forEach((tran) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${tran.id}</td>
+                <td>${tran.nome}</td>
+                <td>${tran.cnpj}</td>
+                <td>${tran.taxa}</td>
+                <td>${tran.regiao}</td>
+            `;
+            tabelaTransportadoras.appendChild(tr);
+        });
+    })
+    .catch((err) => console.error(err));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const menuListar = document.querySelector('.transportadora.submenu span:contains("Listar transportadoras")');
+    if (menuListar) menuListar.parentElement.addEventListener("click", listarTransportadoras);
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     formularioTran.addEventListener("submit", (e) => {
         e.preventDefault();
