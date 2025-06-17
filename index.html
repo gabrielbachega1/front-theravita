@@ -17,7 +17,8 @@
 
     <link rel="stylesheet" href="src/css/funcionario.css">
     <link rel="stylesheet" href="src/css/produtos.css">
-    <link rel="stylesheet" href="src/css/none.css">
+    <link rel="stylesheet" href="src/css/transportadora.css">
+    <link rel="stylesheet" href="src/css/none.css"> <!-- deixar como último -->
 </head>
 
 <body>
@@ -445,10 +446,35 @@
                 </form>
 
             </div>
+
+            <div class="cadastrar-transportadora invisivel">
+                <h2>Cadastro de Transportadora</h2>
+                <form id="form-cadastro-transportadora" autocomplete="off" aria-label="Cadastro de Transportadora">
+                    <label for="nome-transportadora-cadastro">Nome da transportadora:</label>
+                    <input type="text" id="nome-transportadora-cadastro" name="nome-transportadora-cadastro" required placeholder="Digite o nome da transportadora">
+
+                    <label for="cnpj-transportadora-cadastro">CNPJ:</label>
+                    <input type="text" id="cnpj-transportadora-cadastro" name="cnpj-transportadora-cadastro" required placeholder="Somente números" maxlength="14" pattern="\d{14}">
+
+                    <label for="taxa-transportadora-cadastro">Taxa:</label>
+                    <input type="number" id="taxa-transportadora-cadastro" name="taxa-transportadora-cadastro" required min="0" step="0.01" placeholder="Ex: 25.00">
+
+                    <label for="regiao-transportadora-cadastro">Região que atua:</label>
+                    <select id="regiao-transportadora-cadastro" name="regiao-transportadora-cadastro" required>
+                        <option value="" selected disabled>Selecione uma região...</option>
+                        <option value="METROPOLITANA">Metropolitana</option>
+                        <option value="MUNICIPAL">Municipal</option>
+                        <option value="ESTADUAL">Estadual</option>
+                    </select>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
         </section>
     </div>
     <script src="src/js/funcionarios.js"></script>
     <script src="src/js/produtos.js"></script>
+    <script src="src/js/transportadora.js"></script>
     <script src="src/js/menu.js"></script>
 </body>
 
