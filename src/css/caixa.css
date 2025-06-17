@@ -1,0 +1,46 @@
+.registrar-venda h2
+.registrar-compra h2 {
+    font-size: 28px;
+}
+
+.registrar-venda,
+.registrar-compra {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+.registrar-venda .produto-venda,
+.registrar-compra .produto-compra {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.registrar-venda form ,
+.registrar-compra form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.registrar-venda .container1,
+.registrar-venda .container2,
+.registrar-compra .container1, 
+.registrar-compra .container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+
+.registrar-compra input,
+.registrar-compra select,
+.registrar-venda input, 
+.registrar-venda select {
+    font-size: 18px;
+    border-radius: 5px;
+}
