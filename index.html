@@ -473,6 +473,33 @@
                     </table>
                 </div>
             </div>
+
+            <div class="atualizar-transportadora invisivel">
+                <h2>Atualizar Transportadora</h2>
+                <form id="form-atualizar-transportadora" autocomplete="off" aria-label="Atualizar Transportadora">
+                    <label for="id-transportadora-atualizar">Informe o ID da transportadora que deseja atualizar:</label>
+                    <input type="number" id="id-transportadora-atualizar" name="id-transportadora-atualizar" required placeholder="Digite o ID">
+
+                    <label for="nome-transportadora-atualizar">Nome da transportadora:</label>
+                    <input type="text" id="nome-transportadora-atualizar" name="nome-transportadora-atualizar" placeholder="Novo nome">
+
+                    <label for="cnpj-transportadora-atualizar">CNPJ:</label>
+                    <input type="text" id="cnpj-transportadora-atualizar" name="cnpj-transportadora-atualizar" placeholder="Novo CNPJ" maxlength="14" pattern="\d{14}">
+
+                    <label for="taxa-transportadora-atualizar">Taxa:</label>
+                    <input type="number" id="taxa-transportadora-atualizar" name="taxa-transportadora-atualizar" min="0" step="0.01" placeholder="Nova taxa">
+
+                    <label for="regiao-transportadora-atualizar">Região:</label>
+                    <select id="regiao-transportadora-atualizar" name="regiao-transportadora-atualizar">
+                        <option value="" selected disabled>Selecione uma região...</option>
+                        <option value="METROPOLITANA">Metropolitana</option>
+                        <option value="MUNICIPAL">Municipal</option>
+                        <option value="ESTADUAL">Estadual</option>
+                    </select>
+
+                    <button type="submit">Atualizar</button>
+                </form>
+            </div>
         </section>
     </div>
     <script src="src/js/funcionarios.js"></script>
