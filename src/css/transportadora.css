@@ -1,0 +1,14 @@
+.cadastrar-transportadora form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastrar-transportadora h2 {
+    font-size: 28px;
+}
+
+.cadastrar-transportadora input,
+.cadastrar-transportadora select {
+    margin-bottom: 16px;
+    border-radius: 5px;
+}
