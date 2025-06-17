@@ -91,11 +91,20 @@ function atualizar() {
     }),
   })
     .then(function (res) {
-      console.log(res);
+      if (!res.ok) {
+        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+      }
+      return res.json();
     })
-    .catch(function (res) {
-      console.log(res);
+    .then(function (data) {
+      console.log("Atualização realizada com sucesso:", data);
+      alert("Produto atualizado com sucesso!");
+    })
+    .catch(function (error) {
+      console.error("Erro ao atualizar o produto:", error);
+      alert(`Falha ao atualizar o produto: ${error.message}`);
     });
+  //modelo para feedback da operação
 }
 
 function limparAtualizar() {
@@ -110,6 +119,5 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     atualizar();
     limparAtualizar();
-    alert("Produto atualizado com sucesso!");
   });
 });
