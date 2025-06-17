@@ -1,5 +1,6 @@
 .cadastrar-funcionario form,
-.atualizar-funcionario form {
+.atualizar-funcionario form,
+.excluir-funcionario form {
     display: flex;
     flex-direction: column;
 }
@@ -7,7 +8,7 @@
 .cadastrar-funcionario h2,
 .atualizar-funcionario h2,
 .listar-funcionario h2,
-.excluir-funcionario h2{
+.excluir-funcionario h2 {
     font-size: 28px;
 }
 
@@ -16,7 +17,8 @@
 .cadastrar-funcionario select,
 .atualizar-funcionario h2,
 .atualizar-funcionario input,
-.atualizar-funcionario select {
+.atualizar-funcionario select,
+.excluir-funcionario input {
     margin-bottom: 16px;
     border-radius: 5px;
 }
@@ -28,7 +30,7 @@
     gap: 16px;
 }
 
-.listar-funcionario form {
+.listar-funcionario form{
     display: flex;
     align-items: center;
     gap: 16px;
@@ -37,40 +39,4 @@
 
 button {
     cursor: pointer;
-}
-
-/* TABELA LISTAR */
-table,
-th,
-td {
-    border: 1px solid black;
-    font-size: 16px;
-}
-
-table {
-    border-collapse: collapse;
-    margin: auto;
-}
-
-th,
-td {
-    padding: 10px;
-    text-align: center;
-    width: 120px;
-}
-
-th {
-    font-weight: bold;
-}
-
-tbody tr:hover {
-    background-color: #085F63;
-    color: #fff;
-}
-
-.conteudo table {
-    width: 100%;
-    max-width: 100%;
-    table-layout: auto;
-    border-collapse: collapse;
 }

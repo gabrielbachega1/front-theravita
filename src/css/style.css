@@ -1,150 +1,187 @@
 :root {
-    --primary-color: #55B774;
-    --secondary-color: #9FD179;
-    --accent-color: #91B8D8;
-    --background-color: #D8E4EF;
-    --highlight-color: #C9508B;
-    --soft-highlight-color: #E08CA4;
+  --primary-color: #55b774;
+  --secondary-color: #9fd179;
+  --accent-color: #91b8d8;
+  --background-color: #d8e4ef;
+  --highlight-color: #c9508b;
+  --soft-highlight-color: #e08ca4;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-    font-size: 24px;
-    font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-size: 24px;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--background-color);
 }
 
 .container {
-    display: flex;
-    width: 80%;
-    justify-content: center;
+  display: flex;
+  width: 80%;
+  justify-content: center;
 }
 
 main {
-    background-color: var(--secondary-color);
-    border-radius: 16px;
-    z-index: 1;
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  z-index: 1;
 }
 
 main,
 .conteudo {
-    padding: 30px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11), 0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11), 0 8px 16px rgba(0, 0, 0, 0.11);
+  padding: 30px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11),
+    0 8px 16px rgba(0, 0, 0, 0.11);
 }
 
 .conteudo {
-    min-width: 800px;
-    width: 70%;
-    background-color: #c5d7e6;
-    margin-left: -16px;
-    border-bottom-right-radius: 16px;
-    border-top-right-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.1s ease-in-out;
-    overflow-x: auto;
+  min-width: 800px;
+  width: 70%;
+  background-color: #c5d7e6;
+  margin-left: -16px;
+  border-bottom-right-radius: 16px;
+  border-top-right-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.1s ease-in-out;
+  overflow-x: auto;
 }
 
 .conteudo .bem-vindo h2 {
-    font-size: 32px;
-    color: #121212;
-    text-align: center;
+  font-size: 32px;
+  color: #121212;
+  text-align: center;
 }
 
 main .logo {
-    max-width: 300px;
+  max-width: 300px;
 }
 
 main ul,
 .conteudo .funcionarios ul {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 a {
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    border-radius: 16px;
-    transition: 0.1s ease-in-out;
-    gap: 10px;
-    color: #2f3832;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  transition: 0.1s ease-in-out;
+  gap: 10px;
+  color: #2f3832;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12);
 }
 
 .container main ul li a {
-    background-color: #cceec7;
+  background-color: #cceec7;
 }
 
-.conteudo div { 
-    width: 80%;
-    max-height: 550px;
+.conteudo div {
+  width: 80%;
+  max-height: 550px;
 }
 
-.conteudo label{
-    font-size: 18px;
+.conteudo label {
+  font-size: 18px;
 }
 
 .container .conteudo .funcionarios ul li a {
-    background-color: #e6fdff33;
+  background-color: #e6fdff33;
 }
 
 .container .conteudo .funcionarios ul li a:hover {
-    background-color: #91B8D8;
-    color: #fefefe;
+  background-color: #91b8d8;
+  color: #fefefe;
 }
 
 .dropright {
-    position: relative;
+  position: relative;
 }
 
 .dropright .submenu {
-    width: 300px;
-    position: absolute;
-    top: -80px;
-    left: 100%;
-    display: none;
-    background-color: var(--secondary-color);
-    list-style: none;
-    z-index: 1000;
-    padding: 10px 20px 20px;
-    border-radius: 16px;
+  width: 300px;
+  position: absolute;
+  top: -80px;
+  left: 100%;
+  display: none;
+  background-color: var(--secondary-color);
+  list-style: none;
+  z-index: 1000;
+  padding: 10px 20px 20px;
+  border-radius: 16px;
 }
 
 .dropright:hover .submenu {
-    display: block;
+  display: block;
 }
 
 .dropright .submenu li a {
-    display: block;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-    transition: 0.1s ease-in-out;
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  transition: 0.1s ease-in-out;
 }
 
 .dropright .submenu li a:hover,
 main ul li a:hover {
-    background-color: var(--primary-color);
-    color: #fefefe;
+  background-color: var(--primary-color);
+  color: #fefefe;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* TABELA LISTAR */
+table,
+th,
+td {
+  border: 1px solid black;
+  font-size: 16px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #085f63;
+  color: #fff;
+}
+
+.conteudo table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
 }

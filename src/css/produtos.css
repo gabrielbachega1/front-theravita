@@ -1,0 +1,24 @@
+.cadastrar-produto form,
+.atualizar-produto form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastrar-produto form input,
+.atualizar-produto form input {
+    margin-bottom: 16px;
+    border-radius: 5px;
+}
+
+.cadastrar-produto h2, 
+.listar-produtos h2,
+.atualizar-produto h2 {
+    font-size: 28px;
+}
+
+.listar-produtos {
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+}

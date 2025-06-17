@@ -1,32 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Seleciona os itens do submenu de funcionários
-    const submenuFuncionarios = document.querySelectorAll('.funcionarios.submenu ul li a');
+document.addEventListener("DOMContentLoaded", () => {
+  // Seleciona os itens do submenu de funcionários
+  const linksMenu = document.querySelectorAll(
+    "[data-menu], .produtos.submenu ul li a, .funcionarios.submenu ul li a"
+  );
 
-    // Mapeia o texto do menu para a classe da seção correspondente
-    const mapaSecoes = {
-        'Cadastrar funcionário': 'cadastrar-funcionario',
-        'Editar funcionário': 'atualizar-funcionario',
-        'Listar funcionários': 'listar-funcionario',
-        'Excluir funcionário': 'excluir-funcionario'
-        // Adicione outros mapeamentos conforme criar novas seções
-    };
+  // Mapeia o texto do menu para a classe da seção correspondente
+  const mapaSecoes = {
+    "Cadastrar funcionário": "cadastrar-funcionario",
+    "Editar funcionário": "atualizar-funcionario",
+    "Listar funcionários": "listar-funcionario",
+    "Excluir funcionário": "excluir-funcionario",
+    "Cadastrar produto": "cadastrar-produto",
+    "Listar produtos": "listar-produtos",
+    "Atualizar produto": "atualizar-produto",
+    // Adicione outros mapeamentos conforme criar novas seções
+  };
 
-    submenuFuncionarios.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
+  linksMenu.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
 
-            // Pega o texto do menu clicado
-            const texto = link.textContent.trim();
+      const texto = link.textContent.trim();
 
-            // Verifica se existe uma seção correspondente
-            if (mapaSecoes[texto]) {
-                // Esconde todas as seções
-                document.querySelectorAll('.conteudo > div').forEach(div => div.classList.add('invisivel'));
-                // Mostra a seção correspondente
-                document.querySelector(`.conteudo .${mapaSecoes[texto]}`).classList.remove('invisivel');
-            }
-        });
+      if (mapaSecoes[texto]) {
+        document
+          .querySelectorAll(".conteudo > div")
+          .forEach((div) => div.classList.add("invisivel"));
+        document
+          .querySelector(`.conteudo .${mapaSecoes[texto]}`)
+          .classList.remove("invisivel");
+      }
     });
+  });
 });
 
 // document.addEventListener('DOMContentLoaded', () => {
