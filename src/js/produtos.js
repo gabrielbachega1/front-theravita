@@ -49,11 +49,12 @@ function listarProdutos() {
       tabelaProdutos.innerHTML = "";
       produtos.forEach((produto) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `
-                    <td>${produto.id}</td>
-                    <td>${produto.nome}</td>
-                    <td>${produto.valor_venda}</td>
-                    <td>${produto.valor_compra}</td>
+       tr.innerHTML = `
+                    <td>${produto.produto.id}</td>
+                    <td>${produto.produto.descricao}</td>
+                    <td>${produto.produto.valorVenda}</td>
+                    <td>${produto.produto.valorCompra}</td>
+                    <td>${produto.estoque}</td>
                 `;
         tabelaProdutos.appendChild(tr);
       });
