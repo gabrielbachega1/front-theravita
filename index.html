@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="src/css/funcionario.css">
     <link rel="stylesheet" href="src/css/produtos.css">
+    <link rel="stylesheet" href="src/css/caixa.css">
     <link rel="stylesheet" href="src/css/none.css">
 </head>
 
@@ -427,20 +428,40 @@
             <div class="registrar-venda invisivel">
                 <h2>Registrar Venda</h2>
                 <form id="form-registrar-venda" autocomplete="off" aria-label="Registrar Venda">
-                    <div id="produtos-venda">
-                        <div class="produto-venda">
+                    <label for="funcionario-venda">Funcionário (ID):</label>
+                    <input type="number" id="funcionario-venda" name="funcionario-venda" required placeholder="ID do funcionário">
+
+                    <label for="transportadora-venda">Transportadora (ID):</label>
+                    <input type="number" id="transportadora-venda" name="transportadora-venda" required
+                        placeholder="ID da transportadora">
+
+                    <label for="regiao">Região:</label>
+                    <select id="regiao" name="regiao" required>
+                        <option value="" disabled selected>Selecione a região</option>
+                        <option value="METROPOLITANA">METROPOLITANA</option>
+                        <option value="MUNICIPAL">MUNICIPAL</option>
+                        <option value="ESTADUAL">ESTADUAL</option>
+                    </select>
+
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
+
+                    <div class="produto-venda">
+                        <div class="container1">
                             <label for="id-produto-venda-1">ID do produto:</label>
                             <input type="number" id="id-produto-venda-1" name="id-produto-venda[]" required
                                 placeholder="Digite o ID do produto">
-                            <div class="container-venda">
-                                <label for="quantidade-venda-1">Quantidade vendida:</label>
-                                <input type="number" id="quantidade-venda-1" name="quantidade-venda[]" required min="1" placeholder="Digite a quantidade">
+                        </div>
 
-                                <button type="button" class="remover-produto" style="display:none;">-</button>
-                            </div>
+                        <div class="container2">
+                            <label for="quantidade-venda-1">Quantidade vendida:</label>
+                            <input type="number" id="quantidade-venda-1" name="quantidade-venda[]" required min="1"
+                                placeholder="Digite a quantidade">
+
+                            <button type="button" id="adicionar-produto">+</button>
                         </div>
                     </div>
-                    <button type="button" id="adicionar-produto">+</button>
+
                     <button type="submit">Registrar Venda</button>
                 </form>
 
@@ -449,6 +470,7 @@
     </div>
     <script src="src/js/funcionarios.js"></script>
     <script src="src/js/produtos.js"></script>
+    <script src="src/js/caixa.js"></script>
     <script src="src/js/menu.js"></script>
 </body>
 
