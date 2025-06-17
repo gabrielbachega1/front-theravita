@@ -242,14 +242,6 @@
                     <input type="text" id="cpf-cadastro" name="cpf-cadastro" required placeholder="Somente números"
                         maxlength="11" pattern="\d{11}">
 
-                    <label for="genero-cadastro">Gênero:</label>
-                    <select id="genero-cadastro" name="genero-cadastro" required>
-                        <option value="" selected disabled>Selecione um gênero...</option>
-                        <option value="H">Masculino</option>
-                        <option value="M">Feminino</option>
-                        <option value="O">Outro</option>
-                    </select>
-
                     <label for="setor-cadastro">Setor:</label>
                     <select id="setor-cadastro" name="setor-cadastro" required>
                         <option value="" selected disabled>Selecione um setor...</option>
@@ -281,14 +273,6 @@
                     <label for="cpf-atualizar">CPF:</label>
                     <input type="text" id="cpf-atualizar" name="cpf-atualizar" placeholder="Somente números"
                         maxlength="11" pattern="\d{11}">
-
-                    <label for="genero-atualizar">Gênero:</label>
-                    <select id="genero-atualizar" name="genero-atualizar">
-                        <option value="" selected disabled>Selecione um gênero...</option>
-                        <option value="H">Masculino</option>
-                        <option value="M">Feminino</option>
-                        <option value="O">Outro</option>
-                    </select>
 
                     <label for="setor-atualizar">Setor:</label>
                     <select id="setor-atualizar" name="setor-atualizar">
@@ -344,7 +328,6 @@
                                 <td>${funcionario.id}</td>
                                 <td>${funcionario.nome}</td>
                                 <td>${funcionario.cpf}</td>
-                                <td>${funcionario.genero}</td>
                                 <td>${funcionario.setor}</td>
                                 <td>${funcionario.setor}</td>
                             </tr>

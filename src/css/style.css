@@ -159,6 +159,7 @@ td {
   font-size: 16px;
 }
 
+
 table {
   border-collapse: collapse;
   margin: auto;
@@ -177,6 +178,7 @@ th {
 tbody tr:hover {
   background-color: #085f63;
   color: #fff;
+  cursor: pointer;
 }
 
 .conteudo table {

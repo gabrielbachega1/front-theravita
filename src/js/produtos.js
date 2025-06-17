@@ -17,9 +17,11 @@ function cadastrarProduto() {
       valorCompra: iValorCompra.value,
     }),
   })
-    .then(function (res) {
+    .then((res) => {
       if (!res.ok) {
-        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+        return res.json().then((data) => {
+          throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+        });
       }
       return res.json();
     })
@@ -27,7 +29,7 @@ function cadastrarProduto() {
       console.log("Cadastro realizado com sucesso:", data);
       alert("Produto cadastrado com sucesso!");
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.error("Erro ao cadastrar o produto:", error);
       alert(`Falha ao cadastrar o produto: ${error.message}`);
     });
@@ -51,12 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
 const tabelaProdutos = document.querySelector("#tabela-produtos tbody");
 function listarProdutos() {
   fetch("http://localhost:8800/produtos/listar")
-     .then((res) => {
-      if (!res.ok) throw new Error("Erro na resposta do servidor");
-      return res.text();
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then((data) => {
+          throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+        });
+      }
+      return res.json();
     })
     .then((text) => {
-      if (!text) return []; 
+      if (!text) return [];
       return JSON.parse(text);
     })
     .then((produtos) => {
@@ -70,6 +76,21 @@ function listarProdutos() {
                     <td>${produto.produto.valorCompra}</td>
                     <td>${produto.estoque}</td>
                 `;
+        tr.addEventListener("click", () => {
+          document
+            .querySelectorAll(".conteudo > div")
+            .forEach((div) => div.classList.add("invisivel"));
+
+          const atualizarProdutoDiv = document.querySelector(".atualizar-produto");
+          atualizarProdutoDiv.classList.remove("invisivel");
+
+          // Preencher os campos com os dados do produto
+          document.getElementById("id-prod-atualizar").value = produto.produto.id;
+          document.getElementById("nome-prod-atualizar").value = produto.produto.descricao;
+          document.getElementById("valor-venda-atualizar").value = produto.produto.valorVenda;
+          document.getElementById("valor-compra-atualizar").value = produto.produto.valorCompra;
+        });
+
         tabelaProdutos.appendChild(tr);
       });
     })
@@ -100,9 +121,9 @@ function atualizarProduto() {
     },
     method: "PUT",
     body: JSON.stringify({
-      nome: iNomeAtualizarProd.value,
-      valor_venda: iValorVendaAtualizar.value,
-      valor_compra: iValorCompraAtualizar.value,
+      descricao: iNomeAtualizarProd.value,
+      valorVenda: iValorVendaAtualizar.value,
+      valorCompra: iValorCompraAtualizar.value,
     }),
   })
     .then(function (res) {
