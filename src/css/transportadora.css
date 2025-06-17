@@ -1,16 +1,20 @@
+.atualizar-transportadora form,
 .cadastrar-transportadora form {
     display: flex;
     flex-direction: column;
 }
 
-.cadastrar-transportadora h2 {
-    font-size: 28px;
-}
-
+.atualizar-transportadora input,
 .cadastrar-transportadora input,
 .cadastrar-transportadora select {
     margin-bottom: 16px;
     border-radius: 5px;
+}
+
+.cadastrar-transportadora h2,
+.listar-transportadoras h2,
+.atualizar-transportadora h2 {
+    font-size: 28px;
 }
 
 .listar-transportadoras {
@@ -18,4 +22,8 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 16px;
+}
+
+.atualizar-transportadora form button {
+    margin-top: 18px;
 }

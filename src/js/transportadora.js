@@ -82,3 +82,46 @@ document.addEventListener("DOMContentLoaded", () => {
         limparTransportadora();
     });
 });
+
+const formAtualizarTran = document.querySelector("#form-atualizar-transportadora");
+const iIdTranAtualizar = document.querySelector("#id-transportadora-atualizar");
+const iNomeTranAtualizar = document.querySelector("#nome-transportadora-atualizar");
+const iCnpjTranAtualizar = document.querySelector("#cnpj-transportadora-atualizar");
+const iTaxaTranAtualizar = document.querySelector("#taxa-transportadora-atualizar");
+const iRegiaoTranAtualizar = document.querySelector("#regiao-transportadora-atualizar");
+
+function atualizarTransportadora() {
+    const body = {};
+    if (iNomeTranAtualizar.value) body.nome = iNomeTranAtualizar.value;
+    if (iCnpjTranAtualizar.value) body.cnpj = iCnpjTranAtualizar.value;
+    if (iTaxaTranAtualizar.value) body.taxa = iTaxaTranAtualizar.value;
+    if (iRegiaoTranAtualizar.value) body.regiao = iRegiaoTranAtualizar.value;
+
+    fetch(`http://localhost:8800/transportadoras/atualizar/4/${iIdTranAtualizar.value}`, {
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        method: "PUT",
+        body: JSON.stringify(body),
+    })
+        .then(res => {
+            if (!res.ok) throw new Error("Erro ao atualizar transportadora");
+            return res.json();
+        })
+        .then(data => {
+            alert("Transportadora atualizada com sucesso!");
+            formAtualizarTran.reset();
+        })
+        .catch(err => {
+            alert("Erro ao atualizar transportadora!");
+            console.error(err);
+        });
+}
+
+if (formAtualizarTran) {
+    formAtualizarTran.addEventListener("submit", function (e) {
+        e.preventDefault();
+        atualizarTransportadora();
+    });
+}
