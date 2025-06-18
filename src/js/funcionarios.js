@@ -186,24 +186,24 @@ document.addEventListener("DOMContentLoaded", () => {
             .then((response) => response.json())
             .then((salario) => {
               row.innerHTML += `<td>${salario.salario}</td>`;
+              row.addEventListener("click", () => {
+                document
+                  .querySelectorAll(".conteudo > div")
+                  .forEach((div) => div.classList.add("invisivel"));
+
+                const atualizarProdutoDiv = document.querySelector(".atualizar-funcionario");
+                atualizarProdutoDiv.classList.remove("invisivel");
+
+                // Preencher os campos com os dados do produto
+                document.getElementById("id-atualizar").value = funcionario.id;
+                document.getElementById("nome-atualizar").value = funcionario.nome;
+                document.getElementById("cpf-atualizar").value = funcionario.cpf;
+                document.getElementById("setor-atualizar").value = funcionario.setor;
+                document.getElementById("salario-base-atualizar").value = salario.salario;
+              });
             })
             .catch((error) => console.error("Erro ao obter salário:", error));
 
-          row.addEventListener("click", () => {
-            document
-              .querySelectorAll(".conteudo > div")
-              .forEach((div) => div.classList.add("invisivel"));
-
-            const atualizarProdutoDiv = document.querySelector(".atualizar-funcionario");
-            atualizarProdutoDiv.classList.remove("invisivel");
-
-            // Preencher os campos com os dados do produto
-            document.getElementById("id-atualizar").value = funcionario.id;
-            document.getElementById("nome-atualizar").value = funcionario.nome;
-            document.getElementById("cpf-atualizar").value = funcionario.cpf;
-            document.getElementById("setor-atualizar").value = funcionario.setor;
-            document.getElementById("salario-base-atualizar").value = salario.salario;
-          });
 
           tbody.appendChild(row);
         });

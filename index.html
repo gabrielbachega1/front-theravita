@@ -452,6 +452,36 @@
 
             </div>
 
+            <div class="registrar-compra invisivel">Add commentMore actions
+                <h2>Registrar compra</h2>
+                <form id="form-registrar-compra" autocomplete="off" aria-label="Registrar Compra">
+                    <label for="funcionario-compra">Funcionário (ID):</label>
+                    <input type="number" id="funcionario-compra" name="funcionario-compra" required placeholder="ID do funcionário">
+
+                    <label for="data-compra">Data:</label>
+                    <input type="date" id="data-compra" name="data-compra" required>
+
+                    <div class="produto-compra">
+                        <div class="container1">
+                            <label for="id-produto-compra-1">ID do produto:</label>
+                            <input type="number" id="id-produto-compra-1" name="id-produto-compra[]" required
+                                placeholder="Digite o ID do produto">
+                        </div>
+
+                        <div class="container2">
+                            <label for="quantidade-compra-1">Quantidade compra:</label>
+                            <input type="number" id="quantidade-compra-1" name="quantidade-compra[]" required min="1"
+                                placeholder="Digite a quantidade">
+
+                            <button type="button" id="adicionar-produto">+</button>
+                        </div>
+                    </div>
+
+                    <button type="submit">Registrar Compra</button>
+                </form>
+
+            </div>
+
             <div class="cadastrar-transportadora invisivel">
                 <h2>Cadastro de Transportadora</h2>
                 <form id="form-cadastro-transportadora" autocomplete="off" aria-label="Cadastro de Transportadora">

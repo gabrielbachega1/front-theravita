@@ -1,6 +1,7 @@
 // REGISTRAR VENDA
 document.addEventListener('DOMContentLoaded', () => {
     const produtosVenda = document.querySelector('#form-registrar-venda .produto-venda').parentNode;
+    const formularioVenda = document.querySelector('#form-registrar-venda');
 
     produtosVenda.addEventListener('click', (e) => {
         if (e.target.id === 'adicionar-produto') {
@@ -39,10 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        formularioVenda.addEventListener("submit", (e) => {
-            e.preventDefault();
-            cadastrarVenda();
-        });
+        
+    });
+    formularioVenda.addEventListener("submit", (e) => {
+        e.preventDefault();
+        cadastrarVenda();
     });
 });
 
@@ -55,7 +57,7 @@ const iProdutosVenda = document.querySelectorAll("[id^='id-produto-venda-']");
 const iQuantidadesVenda = document.querySelectorAll("[id^='quantidade-venda-']");
 
 function cadastrarVenda() {
-    fetch("http://localhost:8800/vendas/cadastrar", {
+    fetch("http://localhost:8800/caixa/registrar-venda/1", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -77,7 +79,7 @@ function cadastrarVenda() {
                     throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
                 });
             }
-            return res.json();
+            return null;
         })
         .then(function (data) {
             console.log("Venda registrada com sucesso:", data);
@@ -152,11 +154,19 @@ function cadastrarCompra() {
     const produtos = [];
 
     for (let i = 0; i < iProdutosCompra.length; i++) {
-        produtos.push({
-            produto: iProdutosCompra[i].value,
-            quantidade: iQuantidadesCompra[i].value
-        });
+        if (iProdutosCompra[i].value != "") {
+            produtos.push({
+                produto: iProdutosCompra[i].value,
+                quantidade: iQuantidadesCompra[i].value
+            });
+        }
     }
+
+    console.log(JSON.stringify({
+        funcionario: iIdFuncionarioCompra.value,
+        data: iDataCompra.value,
+        produtos: produtos
+    }));
 
     fetch("http://localhost:8800/caixa/registrar-compra/1", {
         method: "POST",
@@ -168,13 +178,15 @@ function cadastrarCompra() {
             data: iDataCompra.value,
             produtos: produtos
         })
-        
+
     })
-        .then(function (res) {
+        .then((res) => {
             if (!res.ok) {
-                throw new Error(`Erro ${res.status}: ${res.statusText}`);
+                return res.json().then((data) => {
+                    throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+                });
             }
-            return res.json();
+            return null;
         })
         .then(function (data) {
             console.log("Compra registrada com sucesso:", data);
@@ -183,7 +195,8 @@ function cadastrarCompra() {
         .catch(function (error) {
             console.error("Erro ao registrar compra:", error);
             alert(`Falha ao registrar compra: ${error.message}`);
-        }); 
+        });
+
 }
 
 // Função para limpar o formulário de compra

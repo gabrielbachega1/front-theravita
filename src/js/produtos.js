@@ -61,10 +61,10 @@ function listarProdutos() {
       }
       return res.json();
     })
-    .then((text) => {
-      if (!text) return [];
-      return JSON.parse(text);
-    })
+    // .then((text) => {
+    //   if (!text) return [];
+    //   return JSON.parse(text);
+    // })
     .then((produtos) => {
       tabelaProdutos.innerHTML = "";
       produtos.forEach((produto) => {

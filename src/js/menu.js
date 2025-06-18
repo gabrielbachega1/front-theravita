@@ -14,15 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "Listar produtos": "listar-produtos",
     "Atualizar produto": "atualizar-produto",
     "Registrar venda": "registrar-venda",
-<<<<<<< HEAD
+    "Registrar compra": "registrar-compra",
     "Cadastrar transportadora": "cadastrar-transportadora",
     "Listar transportadoras": "listar-transportadoras",
     "Atualizar transportadora": "atualizar-transportadora",
     "Consultar transações em andamento": "listar-transacoes-abertas",
     "Atualizar status": "atualizar-status-transacao",
-=======
-    "Registrar compra": "registrar-compra"
->>>>>>> 49c0d78bf9b17dc14d2670b9ed114d9287b7f28a
+
     // Adicione outros mapeamentos conforme criar novas seções
   };
 
