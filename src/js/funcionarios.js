@@ -197,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const atualizarProdutoDiv = document.querySelector(".atualizar-funcionario");
             atualizarProdutoDiv.classList.remove("invisivel");
 
-            // Preencher os campos com os dados do produto
             document.getElementById("id-atualizar").value = funcionario.id;
             document.getElementById("nome-atualizar").value = funcionario.nome;
             document.getElementById("cpf-atualizar").value = funcionario.cpf;
@@ -221,14 +220,28 @@ function excluirFuncionario() {
   })
     .then((res) => {
       if (!res.ok) {
-        return res.json().then((data) => {
+        return res.text().then((text) => {
+          let data;
+          try {
+            data = JSON.parse(text);
+          } catch {
+            data = {};
+          }
           throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
         });
       }
+      if (res.status === 204) {
+        return {};
+      }
       return res.json();
     })
-    .catch(function (res) {
-      console.log(res);
+    .then(function (data) {
+      console.log("Funcionário excluído com sucesso:", data);
+      alert("Funcionário excluído com sucesso!");
+    })
+    .catch(function (error) {
+      console.error("Erro ao excluir funcionário:", error);
+      alert(`Falha ao excluir funcionário: ${error.message}`);
     });
 }
 

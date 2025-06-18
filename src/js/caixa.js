@@ -1,6 +1,7 @@
 // REGISTRAR VENDA
 document.addEventListener('DOMContentLoaded', () => {
     const produtosVenda = document.querySelector('#form-registrar-venda .produto-venda').parentNode;
+    const formularioVenda = document.querySelector("#form-registrar-venda");
 
     produtosVenda.addEventListener('click', (e) => {
         if (e.target.id === 'adicionar-produto') {
@@ -38,11 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.style.display = produtosVenda.querySelectorAll('.produto-venda').length > 1 ? 'inline-block' : 'none';
             });
         }
+    });
 
-        formularioVenda.addEventListener("submit", (e) => {
-            e.preventDefault();
-            cadastrarVenda();
-        });
+    formularioVenda.addEventListener("submit", (e) => {
+        e.preventDefault();
+        cadastrarVenda();
+        limparVenda();
     });
 });
 
@@ -55,7 +57,13 @@ const iProdutosVenda = document.querySelectorAll("[id^='id-produto-venda-']");
 const iQuantidadesVenda = document.querySelectorAll("[id^='quantidade-venda-']");
 
 function cadastrarVenda() {
-    fetch("http://localhost:8800/vendas/cadastrar", {
+    let dataFormatadaVenda = "";
+    if (iDataVenda.value) {
+        const [ano, mes, dia] = iDataVenda.value.split("-");
+        dataFormatadaVenda = `${dia}-${mes}-${ano}`;
+    }
+
+    fetch("http://localhost:8800/caixa/registrar-venda/1", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -64,7 +72,7 @@ function cadastrarVenda() {
             funcionario: iIdFuncionarioVenda.value,
             transportadora: iIdTransportadoraVenda.value,
             regiao: iRegiaoVenda.value,
-            data: iDataVenda.value,
+            data: dataFormatadaVenda,
             produtos: Array.from(iProdutosVenda).map((input, index) => ({
                 produto: input.value,
                 quantidade: iQuantidadesVenda[index].value
@@ -73,11 +81,17 @@ function cadastrarVenda() {
     })
         .then((res) => {
             if (!res.ok) {
-                return res.json().then((data) => {
+                return res.text().then((text) => {
+                    let data;
+                    try {
+                        data = JSON.parse(text);
+                    } catch {
+                        data = {};
+                    }
                     throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
                 });
             }
-            return res.json();
+            return res.text().then(text => text ? JSON.parse(text) : {});
         })
         .then(function (data) {
             console.log("Venda registrada com sucesso:", data);
@@ -149,12 +163,17 @@ function cadastrarCompra() {
     const iProdutosCompra = document.querySelectorAll("[id^='id-produto-compra-']");
     const iQuantidadesCompra = document.querySelectorAll("[id^='quantidade-compra-']");
 
-    const produtos = [];
+    let dataFormatada = "";
+    if (iDataCompra.value) {
+        const [ano, mes, dia] = iDataCompra.value.split("-");
+        dataFormatada = `${dia}-${mes}-${ano}`;
+    }
 
+    const produtosArr = [];
     for (let i = 0; i < iProdutosCompra.length; i++) {
-        produtos.push({
-            produto: iProdutosCompra[i].value,
-            quantidade: iQuantidadesCompra[i].value
+        produtosArr.push({
+            produto: Number(iProdutosCompra[i].value),
+            quantidade: Number(iQuantidadesCompra[i].value)
         });
     }
 
@@ -165,16 +184,15 @@ function cadastrarCompra() {
         },
         body: JSON.stringify({
             funcionario: iIdFuncionarioCompra.value,
-            data: iDataCompra.value,
-            produtos: produtos
+            data: dataFormatada,
+            produtos: produtosArr
         })
-        
     })
         .then(function (res) {
             if (!res.ok) {
                 throw new Error(`Erro ${res.status}: ${res.statusText}`);
             }
-            return res.json();
+            return res.text().then(text => text ? JSON.parse(text) : {});
         })
         .then(function (data) {
             console.log("Compra registrada com sucesso:", data);
@@ -183,13 +201,55 @@ function cadastrarCompra() {
         .catch(function (error) {
             console.error("Erro ao registrar compra:", error);
             alert(`Falha ao registrar compra: ${error.message}`);
-        }); 
+        });
 }
 
-// Função para limpar o formulário de compra
 function limparCompra() {
     document.querySelector("#funcionario-compra").value = "";
     document.querySelector("#data-compra").value = "";
     document.querySelectorAll("[id^='id-produto-compra-']").forEach(input => input.value = "");
     document.querySelectorAll("[id^='quantidade-compra-']").forEach(input => input.value = "");
+}
+
+// VIZUALIZAR SALDO ATUAL
+
+// VERIFICAR LUCRO MENSAL
+const formularioLucroMensal = document.querySelector("#form-lucro-mensal");
+formularioLucroMensal.addEventListener("submit", (e) => {
+    e.preventDefault();
+    verificarLucroMensal();
+});
+
+function verificarLucroMensal() {
+    const iMesLucroMensal = document.querySelector("#mes-lucro-mensal");
+    const iAnoLucroMensal = document.querySelector("#ano-lucro-mensal");
+
+    fetch(`http://localhost:8800/caixa/lucro-mensal/1/${iMesLucroMensal.value}/${iAnoLucroMensal.value}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((res) => {
+            if (!res.ok) {
+                return res.text().then((text) => {
+                    let data;
+                    try {
+                        data = JSON.parse(text);
+                    } catch {
+                        data = {};
+                    }
+                    throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+                });
+            }
+            return res.json();
+        })
+        .then(function (data) {
+            console.log("Lucro mensal verificado com sucesso:", data);
+            alert(`Lucro mensal: R$ ${data.saldo}`);
+        })
+        .catch(function (error) {
+            console.error("Erro ao verificar lucro mensal:", error);
+            alert(`Falha ao verificar lucro mensal: ${error.message}`);
+        });
 }

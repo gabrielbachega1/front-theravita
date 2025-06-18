@@ -61,10 +61,6 @@ function listarProdutos() {
       }
       return res.json();
     })
-    .then((text) => {
-      if (!text) return [];
-      return JSON.parse(text);
-    })
     .then((produtos) => {
       tabelaProdutos.innerHTML = "";
       produtos.forEach((produto) => {
@@ -84,7 +80,6 @@ function listarProdutos() {
           const atualizarProdutoDiv = document.querySelector(".atualizar-produto");
           atualizarProdutoDiv.classList.remove("invisivel");
 
-          // Preencher os campos com os dados do produto
           document.getElementById("id-prod-atualizar").value = produto.produto.id;
           document.getElementById("nome-prod-atualizar").value = produto.produto.descricao;
           document.getElementById("valor-venda-atualizar").value = produto.produto.valorVenda;
@@ -110,9 +105,9 @@ const iValorCompraAtualizar = document.querySelector("#valor-compra-atualizar");
 
 function atualizarProduto() {
   const body = {};
-  if (iNomeAtualizarProd.value) body.nome = iNomeAtualizarProd.value;
-  if (iValorVendaAtualizar.value) body.valor_venda = iValorVendaAtualizar.value;
-  if (iValorCompra.value) body.valor_compra = iValorCompraAtualizar.value;
+  if (iNomeAtualizarProd.value) body.descricao = iNomeAtualizarProd.value;
+  if (iValorVendaAtualizar.value) body.valorVenda = Number(iValorVendaAtualizar.value);
+  if (iValorCompraAtualizar.value) body.valorCompra = Number(iValorCompraAtualizar.value);
 
   fetch(`http://localhost:8800/produtos/atualizar/${iIdAtualizarProd.value}`, {
     headers: {
@@ -120,32 +115,31 @@ function atualizarProduto() {
       "Content-Type": "application/json",
     },
     method: "PUT",
-    body: JSON.stringify({
-      descricao: iNomeAtualizarProd.value,
-      valorVenda: iValorVendaAtualizar.value,
-      valorCompra: iValorCompraAtualizar.value,
-    }),
+    body: JSON.stringify(body),
   })
     .then(function (res) {
       if (!res.ok) {
-        throw new Error(`Erro ${res.status}: ${res.statusText}`);
+        return res.json().then((data) => {
+          throw new Error(data.erro || `Erro ${res.status}: ${res.statusText}`);
+        });
       }
       return res.json();
     })
     .then(function (data) {
       console.log("Atualização realizada com sucesso:", data);
       alert("Produto atualizado com sucesso!");
+      listarProdutos();
     })
     .catch(function (error) {
       console.error("Erro ao atualizar o produto:", error);
       alert(`Falha ao atualizar o produto: ${error.message}`);
+      console.log(body);
     });
-  //modelo para feedback da operação
 }
 
 function limparAtualizarProd() {
-  iIdAtualizar.value = "";
-  iNomeAtualizar.value = "";
+  iIdAtualizarProd.value = "";
+  iNomeAtualizarProd.value = "";
   iValorVendaAtualizar.value = "";
   iValorCompraAtualizar.value = "";
 }

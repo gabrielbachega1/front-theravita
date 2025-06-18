@@ -1,5 +1,7 @@
 .registrar-venda h2
-.registrar-compra h2 {
+.registrar-compra h2,
+.verificar-lucro-mensal h2,
+.verificar-lucro-anual h2 {
     font-size: 28px;
 }
 
@@ -40,7 +42,12 @@
 .registrar-compra input,
 .registrar-compra select,
 .registrar-venda input, 
-.registrar-venda select {
+.registrar-venda select,
+.verificar-lucro-mensal input,
+.verificar-lucro-mensal select,
+.verificar-lucro-mensal button,
+.verificar-lucro-anual input,
+.verificar-lucro-anual button{
     font-size: 18px;
     border-radius: 5px;
 }

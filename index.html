@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="src/css/produtos.css">
     <link rel="stylesheet" href="src/css/transportadora.css">
     <link rel="stylesheet" href="src/css/caixa.css">
+    <link rel="stylesheet" href="src/css/gestao.css">
     <link rel="stylesheet" href="src/css/none.css"><!-- deixar como último -->
 </head>
 
@@ -452,6 +453,88 @@
 
             </div>
 
+            <div class="registrar-compra invisivel">
+                <h2>Registrar compra</h2>
+                <form id="form-registrar-compra" autocomplete="off" aria-label="Registrar Compra">
+                    <label for="funcionario-compra">Funcionário (ID):</label>
+                    <input type="number" id="funcionario-compra" name="funcionario-compra" required
+                        placeholder="ID do funcionário">
+
+                    <label for="data-compra">Data:</label>
+                    <input type="date" id="data-compra" name="data-compra" required>
+
+                    <div class="produto-compra">
+                        <div class="container1">
+                            <label for="id-produto-compra-1">ID do produto:</label>
+                            <input type="number" id="id-produto-compra-1" name="id-produto-compra[]" required
+                                placeholder="Digite o ID do produto">
+                        </div>
+
+                        <div class="container2">
+                            <label for="quantidade-compra-1">Quantidade compra:</label>
+                            <input type="number" id="quantidade-compra-1" name="quantidade-compra[]" required min="1"
+                                placeholder="Digite a quantidade">
+
+                            <button type="button" id="adicionar-produto">+</button>
+                        </div>
+                    </div>
+
+                    <button type="submit">Registrar Compra</button>
+                </form>
+            </div>
+
+            <div class="visualizar-saldo-atual invisivel">
+                <h2>Saldo Atual</h2>
+                <div id="saldo-atual">
+                    <!-- O saldo atual será exibido aqui -->
+                    <p>Saldo atual: R$ <span id="valor-saldo">0.00</span></p>
+                </div>
+            </div>
+
+            <div class="verificar-lucro-mensal invisivel">
+                <h2>Lucro Mensal</h2>
+                <form id="form-lucro-mensal" autocomplete="off" aria-label="Verificar Lucro Mensal">
+                    <label for="mes-lucro-mensal">Mês:</label>
+                    <select id="mes-lucro-mensal" name="mes-lucro-mensal" required>
+                        <option value="" selected disabled>Selecione um mês...</option>
+                        <option value="01">Janeiro</option>
+                        <option value="02">Fevereiro</option>
+                        <option value="03">Março</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Maio</option>
+                        <option value="06">Junho</option>
+                        <option value="07">Julho</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                    <label for="ano-lucro-mensal">Ano:</label>
+                    <input type="number" id="ano-lucro-mensal" name="ano-lucro-mensal" required
+                        placeholder="Digite o ano (Ex: 2023)" min="2000" max="2100">
+
+                    <button type="submit">Verificar Lucro Mensal</button>
+                </form>
+                <div id="resultado-lucro-mensal">
+                    <p>Saldo atual: R$ <span id="valor-saldo">0.00</span></p>
+                </div>
+            </div>
+
+            <div class="verificar-lucro-anual invisivel">
+                <h2>Lucro Anual</h2>
+                <form id="form-lucro-anual" autocomplete="off" aria-label="Verificar Lucro Anual">
+                    <label for="ano-lucro-anual">Ano:</label>
+                    <input type="number" id="ano-lucro-anual" name="ano-lucro-anual" required
+                        placeholder="Digite o ano (Ex: 2023)" min="2000" max="2100">
+
+                    <button type="submit">Verificar Lucro Anual</button>
+                </form>
+                <div id="resultado-lucro-anual">
+                    <p>Saldo atual: R$ <span id="valor-saldo">0.00</span></p>
+                </div>
+            </div>
+
             <div class="cadastrar-transportadora invisivel">
                 <h2>Cadastro de Transportadora</h2>
                 <form id="form-cadastro-transportadora" autocomplete="off" aria-label="Cadastro de Transportadora">
@@ -463,9 +546,9 @@
                     <input type="text" id="cnpj-transportadora-cadastro" name="cnpj-transportadora-cadastro" required
                         placeholder="Somente números" maxlength="14" pattern="\d{14}">
 
-                    <label for="taxa-transportadora-cadastro">Taxa:</label>
+                    <label for="taxa-transportadora-cadastro">Taxa (%):</label>
                     <input type="number" id="taxa-transportadora-cadastro" name="taxa-transportadora-cadastro" required
-                        min="0" step="0.01" placeholder="Ex: 25.00">
+                        min="0" step="0.01" placeholder="Ex: 2">
 
                     <label for="regiao-transportadora-cadastro">Região que atua:</label>
                     <select id="regiao-transportadora-cadastro" name="regiao-transportadora-cadastro" required>
@@ -539,13 +622,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Produto</th>
-                                <th>Estoque</th>
-                                <th>Região</th>
-                                <th>Transportadora</th>
                                 <th>Data</th>
                                 <th>Valor</th>
                                 <th>Status</th>
-                                <!-- Adicione outros campos relevantes da venda -->
                             </tr>
                         </thead>
                         <tbody>
@@ -556,62 +635,24 @@
             </div>
 
             <div class="atualizar-status-transacao invisivel">
-                <h2>Atualizar Status da Venda</h2>
-                <form id="form-pesquisar-venda" autocomplete="off">
-                    <label for="id-venda-pesquisar">ID da venda:</label>
-                    <input type="number" id="id-venda-pesquisar" name="id-venda-pesquisar" required
-                        placeholder="Digite o ID">
-                    <button type="submit">Pesquisar</button>
+                <h2>Atualizar Status</h2>
+                <form id="form-atualizar-status" autocomplete="off" style="margin-top: 16px;">
+                    <label for="id-venda-atualizar">ID da venda:</label>
+                    <input type="number" id="id-venda-atualizar" name="id-venda-atualizar" required
+                        placeholder="Digite o ID da venda">
+
+                    <label for="novo-status">Novo status:</label>
+                    <select id="novo-status" name="novo-status" required>
+                        <option value="" selected disabled>Selecione o novo status...</option>
+                        <option value="ABERTO">ABERTO</option>
+                        <option value="FECHADO">FECHADO</option>
+                        <option value="CANCELADO">CANCELADO</option>
+                    </select>
+                    <button type="submit" style="margin-top: 12px;">Atualizar</button>
                 </form>
-                <div id="info-venda-status" style="display:none; margin-top: 20px;">
-                    <p><strong>Produto:</strong> <span id="info-produto"></span></p>
-                    <p><strong>Estoque:</strong> <span id="info-estoque"></span></p>
-                    <p><strong>Região:</strong> <span id="info-regiao"></span></p>
-                    <p><strong>Transportadora:</strong> <span id="info-transportadora"></span></p>
-                    <p><strong>Data:</strong> <span id="info-data"></span></p>
-                    <p><strong>Valor:</strong> <span id="info-valor"></span></p>
-                    <p><strong>Status atual:</strong> <span id="info-status"></span></p>
-                    <form id="form-atualizar-status" autocomplete="off" style="margin-top: 16px;">
-                        <label for="novo-status">Novo status:</label>
-                        <select id="novo-status" name="novo-status" required>
-                            <option value="" selected disabled>Selecione o novo status...</option>
-                            <option value="ABERTO">ABERTO</option>
-                            <option value="FECHADO">FECHADO</option>
-                            <option value="CANCELADO">CANCELADO</option>
-                        </select>
-                        <button type="submit" style="margin-top: 12px;">Atualizar</button>
-                    </form>
-                </div>
-                <div class="registrar-compra invisivel">
-                    <h2>Registrar compra</h2>
-                    <form id="form-registrar-compra" autocomplete="off" aria-label="Registrar Compra">
-                        <label for="funcionario-compra">Funcionário (ID):</label>
-                        <input type="number" id="funcionario-compra" name="funcionario-compra" required
-                            placeholder="ID do funcionário">
+            </div>
 
-                        <label for="data-compra">Data:</label>
-                        <input type="date" id="data-compra" name="data-compra" required>
 
-                        <div class="produto-compra">
-                            <div class="container1">
-                                <label for="id-produto-compra-1">ID do produto:</label>
-                                <input type="number" id="id-produto-compra-1" name="id-produto-compra[]" required
-                                    placeholder="Digite o ID do produto">
-                            </div>
-
-                            <div class="container2">
-                                <label for="quantidade-compra-1">Quantidade compra:</label>
-                                <input type="number" id="quantidade-compra-1" name="quantidade-compra[]" required
-                                    min="1" placeholder="Digite a quantidade">
-
-                                <button type="button" id="adicionar-produto">+</button>
-                            </div>
-                        </div>
-
-                        <button type="submit">Registrar Compra</button>
-                    </form>
-
-                </div>
         </section>
     </div>
     <script src="src/js/funcionarios.js"></script>

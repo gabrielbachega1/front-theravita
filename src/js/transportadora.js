@@ -16,7 +16,7 @@ function cadastrarTransportadora() {
       nome: iNomeTran.value,
       cnpj: iCnpj.value,
       taxa: iTaxa.value,
-      regiao: iRegiao.value,
+      regioes: [iRegiao.value]
     }),
   })
     .then(function (res) {
@@ -42,6 +42,8 @@ function limparTransportadora() {
   iRegiao.value = "";
 }
 
+
+// LISTAR TRANSPORTADORAS
 const tabelaTransportadoras = document.querySelector("#tabela-transportadoras tbody");
 function listarTransportadoras() {
     fetch("http://localhost:8800/transportadoras/listar")
@@ -62,7 +64,7 @@ function listarTransportadoras() {
                 <td>${tran.nome}</td>
                 <td>${tran.cnpj}</td>
                 <td>${tran.taxa}</td>
-                <td>${tran.regiao}</td>
+                <td>${tran.regioes}</td>
             `;
             tabelaTransportadoras.appendChild(tr);
         });
@@ -71,8 +73,11 @@ function listarTransportadoras() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const menuListar = document.querySelector('.transportadora.submenu span:contains("Listar transportadoras")');
-    if (menuListar) menuListar.parentElement.addEventListener("click", listarTransportadoras);
+    document.querySelectorAll('.transportadora.submenu span').forEach(span => {
+        if (span.textContent.trim() === "Listar transportadoras") {
+            span.parentElement.addEventListener("click", listarTransportadoras);
+        }
+    });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -90,12 +95,13 @@ const iCnpjTranAtualizar = document.querySelector("#cnpj-transportadora-atualiza
 const iTaxaTranAtualizar = document.querySelector("#taxa-transportadora-atualizar");
 const iRegiaoTranAtualizar = document.querySelector("#regiao-transportadora-atualizar");
 
+//ATUALIZAR TRANSPORTADORA
 function atualizarTransportadora() {
     const body = {};
     if (iNomeTranAtualizar.value) body.nome = iNomeTranAtualizar.value;
     if (iCnpjTranAtualizar.value) body.cnpj = iCnpjTranAtualizar.value;
-    if (iTaxaTranAtualizar.value) body.taxa = iTaxaTranAtualizar.value;
-    if (iRegiaoTranAtualizar.value) body.regiao = iRegiaoTranAtualizar.value;
+    if (iTaxaTranAtualizar.value) body.taxa = Number(iTaxaTranAtualizar.value);
+    if (iRegiaoTranAtualizar.value) body.regioes = [iRegiaoTranAtualizar.value];
 
     fetch(`http://localhost:8800/transportadoras/atualizar/${iIdTranAtualizar.value}`, {
         headers: {
@@ -112,6 +118,7 @@ function atualizarTransportadora() {
         .then(data => {
             alert("Transportadora atualizada com sucesso!");
             formAtualizarTran.reset();
+            listarTransportadoras(); 
         })
         .catch(err => {
             alert("Erro ao atualizar transportadora!");
@@ -123,5 +130,14 @@ if (formAtualizarTran) {
     formAtualizarTran.addEventListener("submit", function (e) {
         e.preventDefault();
         atualizarTransportadora();
+        limparAtualizarTransportadora();
     });
+}
+
+function limparAtualizarTransportadora() {
+    iIdTranAtualizar.value = "";
+    iNomeTranAtualizar.value = "";
+    iCnpjTranAtualizar.value = "";
+    iTaxaTranAtualizar.value = "";
+    iRegiaoTranAtualizar.value = "";
 }
